@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/messageDetailsLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?colorSurface"
+        android:clipChildren="false">
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/messageDetailsBackButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:background="@android:color/transparent"
+            android:elevation="4dp"
+            android:foreground="?selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/messageDetailsDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            tools:text="13.05.1998"
+            android:drawableStart="@drawable/ic_date"
+            android:drawablePadding="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_margin="16dp"
+            android:elevation="4dp"/>
+
+        <View
+            android:id="@+id/messageDetailsTopImage"
+            android:layout_width="0dp"
+            android:layout_height="300dp"
+            android:background="?colorPrimary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_marginBottom="32dp"
+            android:padding="8dp"
+            app:layout_constraintBottom_toBottomOf="@id/messageDetailsTopImage"
+            app:layout_constraintEnd_toEndOf="@id/messageDetailsTopImage"
+            app:layout_constraintStart_toStartOf="@id/messageDetailsTopImage"
+            app:srcCompat="@drawable/ic_letter_opened" />
+
+        <Space
+            android:id="@+id/messageDetailsOverlapSpacer"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="64dp"
+            app:layout_constraintBottom_toBottomOf="@id/messageDetailsTopImage"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/messageDetailsCard"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:minHeight="100dp"
+            app:cardElevation="2dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/messageDetailsOverlapSpacer">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/messageDetailsText"
+                style="@style/TextAppearance.AppCompat.Body1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                tools:text="@tools:sample/lorem[100]" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <Space
+            android:id="@+id/messageDetailsSpacer"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toBottomOf="@id/messageDetailsCard"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/messageDetailsButtons"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <androidx.constraintlayout.helper.widget.Flow
+            android:id="@+id/messageDetailsButtons"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            app:constraint_referenced_ids="messageDetailsBadButton, messageDetailsNeutralButton,messageDetailsGoodButton"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/messageDetailsSpacer"
+            app:flow_horizontalStyle="spread"/>
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/messageDetailsGoodButton"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:background="@drawable/circle"
+            android:elevation="2dp"
+            android:foreground="?selectableItemBackgroundBorderless"
+            android:scaleX="0"
+            android:scaleY="0"
+            android:src="@drawable/ic_good"
+            app:fabSize="normal"
+            tools:scaleX="1"
+            tools:scaleY="1" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/messageDetailsNeutralButton"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:background="@drawable/circle"
+            android:elevation="2dp"
+            android:foreground="?selectableItemBackgroundBorderless"
+            android:scaleX="0"
+            android:scaleY="0"
+            android:src="@drawable/ic_neutral"
+            app:fabSize="normal"
+            tools:scaleX="1"
+            tools:scaleY="1" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/messageDetailsBadButton"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:background="@drawable/circle"
+            android:elevation="2dp"
+            android:foreground="?selectableItemBackgroundBorderless"
+            android:scaleX="0"
+            android:scaleY="0"
+            android:src="@drawable/ic_bad"
+            app:fabSize="normal"
+            tools:scaleX="1"
+            tools:scaleY="1" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

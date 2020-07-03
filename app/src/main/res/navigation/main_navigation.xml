@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/main_navigation.xml"
+    app:startDestination="@id/signInFragment"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <fragment
+        android:id="@+id/messagesListFragment"
+        android:name="com.github.daniilbug.lifeisbetter.MailListFragment"
+        android:label="MailBox"
+        tools:layout="@layout/fragment_messages_list">
+        <action
+            android:id="@+id/showMessageDetails"
+            app:destination="@id/messageDetailsFragment" >
+            <argument android:name="messageId" app:argType="string" app:nullable="false" />
+        </action>
+
+
+    </fragment>
+    <fragment
+        android:id="@+id/messageDetailsFragment"
+        android:name="com.github.daniilbug.lifeisbetter.MailDetailsFragment"
+        android:label="Message Details"
+        tools:layout="@layout/fragment_message_details"/>
+    <fragment
+        android:id="@+id/writeMailFragment"
+        android:name="com.github.daniilbug.lifeisbetter.WriteMailFragment"
+        android:label="Write Mail"
+        tools:layout="@layout/fragment_write_mail">
+
+
+    </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.github.daniilbug.lifeisbetter.ProfileFragment"
+        android:label="Profile"
+        tools:layout="@layout/fragment_profile">
+
+        <action
+            android:id="@+id/openEditing"
+            app:destination="@id/editProfileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editProfileFragment"
+        android:name="com.github.daniilbug.lifeisbetter.EditProfileFragment"
+        android:label="EditProfileFragment" />
+    <fragment
+        android:id="@+id/signInFragment"
+        android:name="com.github.daniilbug.lifeisbetter.SignInFragment"
+        android:label="SignInFragment"
+        tools:layout="@layout/fragment_sign_in">
+        <action
+            android:id="@+id/signIn"
+            app:destination="@id/messagesListFragment" />
+        <action
+            android:id="@+id/openSignUp"
+            app:destination="@id/signUpFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUpFragment"
+        android:name="com.github.daniilbug.lifeisbetter.SignUpFragment"
+        android:label="SignUpFragment"
+        tools:layout="@layout/fragment_sign_up"/>
+</navigation>

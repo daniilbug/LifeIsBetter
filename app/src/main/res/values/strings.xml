@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">LifeIsBetter</string>
+    <string name="mailbox">Mailbox</string>
+    <string name="write_mail">Write mail</string>
+    <string name="profile">Profile</string>
+    <string name="email">email</string>
+    <string name="password">password</string>
+    <string name="dont_have_account">Don\'t have an account?</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="sign_in">Sign In</string>
+    <string name="confirm_password">confirm password</string>
+</resources>

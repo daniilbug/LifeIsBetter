@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        android:id="@+id/onSend"
+        app:constraintSetEnd="@id/sentState"
+        app:constraintSetStart="@id/defaultState"
+        app:duration="800">
+
+        <KeyFrameSet>
+            <KeyPosition
+                app:framePosition="28"
+                app:keyPositionType="parentRelative"
+                app:motionTarget="@+id/writeMailOpenedImage"
+                app:percentY="0.99" />
+
+            <KeyAttribute
+                android:scaleX="0.2"
+                android:scaleY="0.4"
+                app:framePosition="50"
+                app:motionTarget="@+id/writeMailCard" />
+        </KeyFrameSet>
+        <OnClick
+            app:clickAction="transitionToEnd"
+            app:targetId="@id/writeMailSendButton" />
+    </Transition>
+
+    <Transition
+        android:id="@+id/onNewMail"
+        app:constraintSetEnd="@id/defaultState"
+        app:constraintSetStart="@id/sentState"
+        app:duration="500">
+
+        <KeyFrameSet>
+            <KeyAttribute
+                app:framePosition="60"
+                android:alpha="0"
+                app:motionTarget="@+id/writeMailNewMailHelpImage" />
+        </KeyFrameSet>
+
+        <OnSwipe
+            app:dragDirection="dragUp"
+            app:onTouchUp="autoCompleteToEnd"
+            app:touchAnchorId="@id/writeMailCard"
+            app:touchAnchorSide="top" />
+    </Transition>
+
+    <ConstraintSet android:id="@+id/defaultState">
+        <Constraint
+            android:id="@+id/writeMailCard"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toTopOf="@id/writeMailSendButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Constraint
+            android:id="@+id/writeMailNewMailHelpImage"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:alpha="0"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Constraint
+            android:id="@+id/writeMailOpenedImage"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="parent" />
+
+        <Constraint
+            android:id="@+id/writeMailSendButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+    </ConstraintSet>
+
+    <ConstraintSet
+        android:id="@+id/sentState"
+        app:deriveConstraintsFrom="@id/defaultState">
+
+        <Constraint
+            android:id="@+id/writeMailCard"
+            android:scaleX="0"
+            android:scaleY="0"
+            app:layout_constraintBottom_toBottomOf="@id/writeMailOpenedImage"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Constraint
+            android:id="@+id/writeMailNewMailHelpImage"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:alpha="1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </ConstraintSet>
+</MotionScene>

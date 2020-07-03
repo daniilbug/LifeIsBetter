@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/writeMailMotionLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layoutDescription="@xml/write_mail_scene">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/writeMailCard"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/writeMailText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:gravity="top"
+            android:inputType="text|textMultiLine"
+            android:padding="8dp"
+            android:textAlignment="gravity"
+            xmlns:tools="http://schemas.android.com/tools"
+            tools:text="@tools:sample/lorem[100]"/>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/writeMailSendButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_send" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/writeMailOpenedImage"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/ic_letter_opened" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/writeMailNewMailHelpImage"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:padding="8dp"
+        android:src="@drawable/ic_up_arrow"
+        android:tint="@android:color/darker_gray"
+        android:visibility="visible" />
+
+</androidx.constraintlayout.motion.widget.MotionLayout>
