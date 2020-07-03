@@ -1,3 +1,4 @@
+include ':firebase_auth'
 include ':auth'
 include ':data'
 include ':domain'
