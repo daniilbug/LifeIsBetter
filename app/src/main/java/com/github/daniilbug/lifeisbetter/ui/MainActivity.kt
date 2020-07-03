@@ -1,11 +1,11 @@
-package com.github.daniilbug.lifeisbetter
+package com.github.daniilbug.lifeisbetter.ui
 
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
+import com.github.daniilbug.lifeisbetter.R
 import kotlinx.android.synthetic.main.activity_main.*
 
 

@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/messagesListFragment"
-        android:name="com.github.daniilbug.lifeisbetter.MailListFragment"
+        android:name="com.github.daniilbug.lifeisbetter.ui.MailListFragment"
         android:label="MailBox"
         tools:layout="@layout/fragment_messages_list">
         <action
@@ -19,12 +19,12 @@
     </fragment>
     <fragment
         android:id="@+id/messageDetailsFragment"
-        android:name="com.github.daniilbug.lifeisbetter.MailDetailsFragment"
+        android:name="com.github.daniilbug.lifeisbetter.ui.MailDetailsFragment"
         android:label="Message Details"
         tools:layout="@layout/fragment_message_details"/>
     <fragment
         android:id="@+id/writeMailFragment"
-        android:name="com.github.daniilbug.lifeisbetter.WriteMailFragment"
+        android:name="com.github.daniilbug.lifeisbetter.ui.WriteMailFragment"
         android:label="Write Mail"
         tools:layout="@layout/fragment_write_mail">
 
@@ -32,7 +32,7 @@
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.github.daniilbug.lifeisbetter.ProfileFragment"
+        android:name="com.github.daniilbug.lifeisbetter.ui.ProfileFragment"
         android:label="Profile"
         tools:layout="@layout/fragment_profile">
 
@@ -42,11 +42,11 @@
     </fragment>
     <fragment
         android:id="@+id/editProfileFragment"
-        android:name="com.github.daniilbug.lifeisbetter.EditProfileFragment"
+        android:name="com.github.daniilbug.lifeisbetter.ui.EditProfileFragment"
         android:label="EditProfileFragment" />
     <fragment
         android:id="@+id/signInFragment"
-        android:name="com.github.daniilbug.lifeisbetter.SignInFragment"
+        android:name="com.github.daniilbug.lifeisbetter.ui.SignInFragment"
         android:label="SignInFragment"
         tools:layout="@layout/fragment_sign_in">
         <action
@@ -58,7 +58,7 @@
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"
-        android:name="com.github.daniilbug.lifeisbetter.SignUpFragment"
+        android:name="com.github.daniilbug.lifeisbetter.ui.SignUpFragment"
         android:label="SignUpFragment"
         tools:layout="@layout/fragment_sign_up"/>
 </navigation>

@@ -1,9 +1,10 @@
-package com.github.daniilbug.lifeisbetter
+package com.github.daniilbug.lifeisbetter.ui
 
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import androidx.navigation.fragment.NavHostFragment
+import com.github.daniilbug.lifeisbetter.R
 import com.github.daniilbug.lifeisbetter.utils.BaseFragment
 import com.google.android.material.transition.Hold
 import com.google.android.material.transition.MaterialArcMotion

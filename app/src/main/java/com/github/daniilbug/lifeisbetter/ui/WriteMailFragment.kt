@@ -1,8 +1,9 @@
-package com.github.daniilbug.lifeisbetter
+package com.github.daniilbug.lifeisbetter.ui
 
 import android.os.Bundle
 import android.view.View
 import androidx.constraintlayout.motion.widget.MotionLayout
+import com.github.daniilbug.lifeisbetter.R
 import com.github.daniilbug.lifeisbetter.utils.BaseFragment
 import com.github.daniilbug.lifeisbetter.utils.EmptyTransitionListener
 import kotlinx.android.synthetic.main.fragment_write_mail.*

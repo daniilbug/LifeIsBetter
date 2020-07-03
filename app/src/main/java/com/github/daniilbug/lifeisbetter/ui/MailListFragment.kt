@@ -1,11 +1,11 @@
-package com.github.daniilbug.lifeisbetter
+package com.github.daniilbug.lifeisbetter.ui
 
 import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
-import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.NavHostFragment
+import com.github.daniilbug.lifeisbetter.R
 import com.github.daniilbug.lifeisbetter.adapter.MailListAdapter
 import com.github.daniilbug.lifeisbetter.utils.BaseFragment
 import com.github.daniilbug.lifeisbetter.viewmodel.MailView

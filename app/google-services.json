@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "400322470527",
+    "firebase_url": "https://lifeisbetter-b3423.firebaseio.com",
+    "project_id": "lifeisbetter-b3423",
+    "storage_bucket": "lifeisbetter-b3423.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:400322470527:android:fa163379a0ed90aee7d54a",
+        "android_client_info": {
+          "package_name": "com.github.daniilbug.lifeisbetter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "400322470527-22vbuio78aodrsd37v0a620smhriij25.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDhD4Y6qsosb0jRSlgnV-laURdvmDqEUVY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "400322470527-22vbuio78aodrsd37v0a620smhriij25.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

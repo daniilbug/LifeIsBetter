@@ -1,7 +1,8 @@
-package com.github.daniilbug.lifeisbetter
+package com.github.daniilbug.lifeisbetter.ui
 
 import android.os.Bundle
 import android.view.View
+import com.github.daniilbug.lifeisbetter.R
 import com.github.daniilbug.lifeisbetter.utils.BaseFragment
 import kotlinx.android.synthetic.main.fragment_profile.view.*
 
