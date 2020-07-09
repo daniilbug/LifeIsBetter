@@ -27,6 +27,8 @@ class FirebaseAuthProvider: AuthProvider {
             throw WeakPasswordException()
         } catch (e: FirebaseAuthEmailException) {
             throw WrongEmailFormatException()
+        } catch (e: FirebaseAuthInvalidCredentialsException) {
+            throw WrongEmailFormatException()
         }
     }
 }

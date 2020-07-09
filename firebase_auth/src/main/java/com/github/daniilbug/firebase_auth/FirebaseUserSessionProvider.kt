@@ -24,6 +24,8 @@ class FirebaseUserSessionProvider: UserSessionProvider {
 
     override fun getAuthState(): StateFlow<UserAuthState> = authState
 
+    override fun isUserLoggedIn() = Firebase.auth.currentUser != null
+
     private fun FirebaseAuth.toUserAuthState(): UserAuthState {
         val uid = uid ?: return UserAuthState.NotLoggedIn
         return UserAuthState.LoggedIn(FirebaseUserSession(uid))

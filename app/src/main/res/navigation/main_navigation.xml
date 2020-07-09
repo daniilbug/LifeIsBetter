@@ -51,6 +51,8 @@
         tools:layout="@layout/fragment_sign_in">
         <action
             android:id="@+id/signIn"
+            app:popUpTo="@id/signInFragment"
+            app:popUpToInclusive="true"
             app:destination="@id/messagesListFragment" />
         <action
             android:id="@+id/openSignUp"

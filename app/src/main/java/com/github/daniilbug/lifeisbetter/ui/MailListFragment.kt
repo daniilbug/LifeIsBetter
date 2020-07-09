@@ -5,6 +5,7 @@ import android.view.View
 import androidx.core.os.bundleOf
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import com.github.daniilbug.lifeisbetter.R
 import com.github.daniilbug.lifeisbetter.adapter.MailListAdapter
 import com.github.daniilbug.lifeisbetter.utils.BaseFragment

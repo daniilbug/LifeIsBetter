@@ -7,13 +7,18 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.github.daniilbug.lifeisbetter.R
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.FlowPreview
 
 
+@ExperimentalCoroutinesApi
+@FlowPreview
 class MainActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        setUpNavigation()
+        setUpBottomNavigation()
     }
 
     fun hideBottomNavigation() {
@@ -24,7 +29,7 @@ class MainActivity : AppCompatActivity() {
         mainBottomNavigation.isVisible = true
     }
 
-    private fun setUpNavigation() {
+    private fun setUpBottomNavigation() {
         val navHostFragment = supportFragmentManager
             .findFragmentById(R.id.navHostFragment) as? NavHostFragment ?: return
         NavigationUI.setupWithNavController(mainBottomNavigation, navHostFragment.navController)

@@ -56,6 +56,7 @@ dependencies {
     implementation project(path: ':domain')
     implementation project(path: ':auth')
     implementation project(path: ':firebase_auth')
+    implementation project(path: ':firebase_data')
 
     def lifecycle_version = "2.2.0"
     // ViewModel

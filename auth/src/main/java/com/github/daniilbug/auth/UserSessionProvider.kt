@@ -6,4 +6,5 @@ import kotlinx.coroutines.flow.StateFlow
 interface UserSessionProvider {
     @ExperimentalCoroutinesApi
     fun getAuthState(): StateFlow<UserAuthState>
+    fun isUserLoggedIn(): Boolean
 }

@@ -9,4 +9,9 @@
     <string name="sign_up">Sign Up</string>
     <string name="sign_in">Sign In</string>
     <string name="confirm_password">confirm password</string>
+    <string name="confirm_password_error">Passwords that you\'ve written are not the same</string>
+    <string name="user_exists_error">User with this email address already exists</string>
+    <string name="invalid_login_or_password_error">Invalid login or password</string>
+    <string name="weak_password_error">Your password is too weak</string>
+    <string name="wrong_email_format_error">Your email is written in wrong format</string>
 </resources>
