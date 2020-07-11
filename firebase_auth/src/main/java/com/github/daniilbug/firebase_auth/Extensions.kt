@@ -20,12 +20,3 @@ suspend fun FirebaseAuth.signIn(email: String, password: String) = suspendCorout
     task.addOnSuccessListener { cont.resumeWith(Result.success(Unit)) }
     task.addOnFailureListener { ex -> cont.resumeWithException(ex) }
 }
-
-@ExperimentalCoroutinesApi
-fun FirebaseAuth.state(): Flow<FirebaseAuth>  = callbackFlow {
-    val stateChangeListener = { auth: FirebaseAuth ->
-        sendBlocking(auth)
-    }
-    addAuthStateListener(stateChangeListener)
-    awaitClose { removeAuthStateListener(stateChangeListener) }
-}

@@ -1,4 +1,4 @@
-package com.pdes.firebase_data
+package com.github.daniilbug.firebase_data
 
 import org.junit.Test
 

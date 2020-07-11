@@ -3,18 +3,26 @@ package com.github.daniilbug.lifeisbetter.ui
 import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.findNavController
 import com.github.daniilbug.lifeisbetter.R
 import com.github.daniilbug.lifeisbetter.adapter.MailListAdapter
+import com.github.daniilbug.lifeisbetter.adapter.MailListLoadingAdapter
 import com.github.daniilbug.lifeisbetter.utils.BaseFragment
-import com.github.daniilbug.lifeisbetter.viewmodel.MailView
+import com.github.daniilbug.lifeisbetter.viewmodel.maillist.MailListViewModel
 import kotlinx.android.synthetic.main.fragment_messages_list.view.*
-import java.util.*
-import kotlin.random.Random
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.InternalCoroutinesApi
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
+@InternalCoroutinesApi
+@ExperimentalCoroutinesApi
 class MailListFragment: BaseFragment(R.layout.fragment_messages_list, needBottomNavigation = true) {
+    private val viewModel: MailListViewModel by viewModel()
+
     private lateinit var mailAdapter: MailListAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -26,8 +34,16 @@ class MailListFragment: BaseFragment(R.layout.fragment_messages_list, needBottom
                     id
                 )
             })
-        view.messagesListRecycler.adapter = mailAdapter
-        mailAdapter.submitList(List(10) { index -> MailView("$index", "Test message $index", Date(Calendar.getInstance().timeInMillis), Random.nextBoolean()) })
+        view.messagesListRecycler.adapter = mailAdapter.withLoadStateHeaderAndFooter(MailListLoadingAdapter(), MailListLoadingAdapter())
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        lifecycleScope.launch {
+            viewModel.state.collectLatest { mails ->
+                mailAdapter.submitData(mails)
+            }
+        }
     }
 
     private fun showDetails(card: View, id: String) {

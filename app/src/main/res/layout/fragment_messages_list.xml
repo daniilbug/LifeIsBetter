@@ -12,5 +12,5 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:orientation="vertical"
         tools:itemCount="10"
-        tools:listitem="@layout/item_message"/>
+        tools:listitem="@layout/item_mail"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

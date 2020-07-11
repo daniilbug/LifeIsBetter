@@ -5,9 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatImageView
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager.widget.PagerAdapter
 import com.github.daniilbug.lifeisbetter.R
 import com.github.daniilbug.lifeisbetter.viewmodel.MailView
 import com.google.android.material.card.MaterialCardView
@@ -15,7 +17,7 @@ import com.google.android.material.textview.MaterialTextView
 
 class MailListAdapter(
     private val onClick: (card: View, messageId: String) -> Unit
-): ListAdapter<MailView, MailListAdapter.ViewHolder>(
+): PagingDataAdapter<MailView, MailListAdapter.ViewHolder>(
     DiffCallback
 ) {
     object DiffCallback: DiffUtil.ItemCallback<MailView>() {
@@ -30,9 +32,9 @@ class MailListAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val view = inflater.inflate(R.layout.item_message, parent, false)
+        val view = inflater.inflate(R.layout.item_mail, parent, false)
         return ViewHolder(view).apply {
-            view.setOnClickListener { onItemClicked(adapterPosition) }
+            view.setOnClickListener { onItemClicked(absoluteAdapterPosition) }
         }
     }
 
@@ -47,7 +49,7 @@ class MailListAdapter(
         private val messageCard: MaterialCardView = itemView.findViewById(R.id.messageItemCard)
 
         fun bind(position: Int) {
-            val message = getItem(position)
+            val message = getItem(position) ?: return
             itemView.transitionName = message.id
             messageText.text = message.text
             messageDate.text = DateFormat.getDateFormat(itemView.context).format(message.date)
@@ -56,7 +58,7 @@ class MailListAdapter(
         }
 
         fun onItemClicked(position: Int) {
-            val message = getItem(position)
+            val message = getItem(position) ?: return
             onClick(messageCard, message.id)
         }
     }

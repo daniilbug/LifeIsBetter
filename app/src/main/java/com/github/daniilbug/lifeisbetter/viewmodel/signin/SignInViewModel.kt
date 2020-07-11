@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.github.daniilbug.auth.InvalidLoginOrPasswordException
-import com.github.daniilbug.auth.WrongEmailFormatException
+import com.github.daniilbug.auth.exceptions.InvalidLoginOrPasswordException
+import com.github.daniilbug.auth.exceptions.WrongEmailFormatException
 import com.github.daniilbug.data.StringResolver
 import com.github.daniilbug.domain.interactor.SignInInteractor
 import com.github.daniilbug.lifeisbetter.R

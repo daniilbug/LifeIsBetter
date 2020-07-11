@@ -4,18 +4,15 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.github.daniilbug.auth.ConfirmPasswordIsWrongException
-import com.github.daniilbug.auth.UserAlreadyExistsException
-import com.github.daniilbug.auth.WeakPasswordException
-import com.github.daniilbug.auth.WrongEmailFormatException
+import com.github.daniilbug.auth.exceptions.ConfirmPasswordIsWrongException
+import com.github.daniilbug.auth.exceptions.UserAlreadyExistsException
+import com.github.daniilbug.auth.exceptions.WeakPasswordException
+import com.github.daniilbug.auth.exceptions.WrongEmailFormatException
 import com.github.daniilbug.data.StringResolver
 import com.github.daniilbug.domain.interactor.SignUpInteractor
 import com.github.daniilbug.lifeisbetter.R
 import com.github.daniilbug.lifeisbetter.utils.StatusLiveData
-import com.github.daniilbug.lifeisbetter.viewmodel.signin.SignInState
-import com.github.daniilbug.lifeisbetter.viewmodel.signin.SignInStatus
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Dispatchers.Default
 import kotlinx.coroutines.launch
 
 class SignUpViewModel(

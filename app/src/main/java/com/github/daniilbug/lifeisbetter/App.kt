@@ -3,11 +3,16 @@ package com.github.daniilbug.lifeisbetter
 import android.app.Application
 import com.github.daniilbug.auth.AuthProvider
 import com.github.daniilbug.auth.UserSessionProvider
+import com.github.daniilbug.data.MailsRepository
 import com.github.daniilbug.data.StringResolver
+import com.github.daniilbug.domain.interactor.MailListInteractor
 import com.github.daniilbug.domain.interactor.SignInInteractor
 import com.github.daniilbug.domain.interactor.SignUpInteractor
 import com.github.daniilbug.firebase_auth.FirebaseAuthProvider
 import com.github.daniilbug.firebase_auth.FirebaseUserSessionProvider
+import com.github.daniilbug.firebase_data.FirebaseMailRepository
+import com.github.daniilbug.lifeisbetter.adapter.MailListAdapter
+import com.github.daniilbug.lifeisbetter.viewmodel.maillist.MailListViewModel
 import com.github.daniilbug.lifeisbetter.viewmodel.signin.SignInViewModel
 import com.github.daniilbug.lifeisbetter.viewmodel.signup.SignUpViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -30,16 +35,19 @@ class App : Application() {
 
         val dataModule = module {
             single<StringResolver> { ResourceStringResolver(get()) }
+            single<MailsRepository> { FirebaseMailRepository() }
         }
 
         val interactorModule = module {
             factory { SignInInteractor(get(), get()) }
             factory { SignUpInteractor(get()) }
+            factory { MailListInteractor(get(), get()) }
         }
 
         val viewModelModule = module {
             viewModel { SignInViewModel(get(), get()) }
             viewModel { SignUpViewModel(get(), get()) }
+            viewModel { MailListViewModel(get()) }
         }
 
         startKoin {

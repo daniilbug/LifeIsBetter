@@ -5,5 +5,6 @@ data class Mail(
     val senderId: String,
     val receiverId: String,
     val content: String,
-    val feedback: Int
+    val feedback: Int,
+    val date: Long
 )

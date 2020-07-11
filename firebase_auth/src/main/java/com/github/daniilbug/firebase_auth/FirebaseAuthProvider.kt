@@ -1,6 +1,10 @@
 package com.github.daniilbug.firebase_auth
 
 import com.github.daniilbug.auth.*
+import com.github.daniilbug.auth.exceptions.InvalidLoginOrPasswordException
+import com.github.daniilbug.auth.exceptions.UserAlreadyExistsException
+import com.github.daniilbug.auth.exceptions.WeakPasswordException
+import com.github.daniilbug.auth.exceptions.WrongEmailFormatException
 import com.google.firebase.auth.*
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase

@@ -3,6 +3,7 @@ package com.github.daniilbug.domain.interactor
 import com.github.daniilbug.auth.AuthProvider
 import com.github.daniilbug.auth.UserAuthState
 import com.github.daniilbug.auth.UserSessionProvider
+import com.github.daniilbug.auth.isUserLoggedIn
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 @ExperimentalCoroutinesApi
