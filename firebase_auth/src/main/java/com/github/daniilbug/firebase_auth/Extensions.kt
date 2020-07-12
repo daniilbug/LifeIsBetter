@@ -15,8 +15,8 @@ suspend fun FirebaseAuth.signUp(email: String, password: String) = suspendCorout
     task.addOnFailureListener { ex -> cont.resumeWithException(ex) }
 }
 
-suspend fun FirebaseAuth.signIn(email: String, password: String) = suspendCoroutine<Unit> { cont ->
+suspend fun FirebaseAuth.signIn(email: String, password: String) = suspendCoroutine<String> { cont ->
     val task = signInWithEmailAndPassword(email, password)
-    task.addOnSuccessListener { cont.resumeWith(Result.success(Unit)) }
+    task.addOnSuccessListener { cont.resumeWith(Result.success(it.user?.uid ?: error("User is not logged in"))) }
     task.addOnFailureListener { ex -> cont.resumeWithException(ex) }
 }

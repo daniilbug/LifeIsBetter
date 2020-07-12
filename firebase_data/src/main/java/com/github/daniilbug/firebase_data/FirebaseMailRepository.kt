@@ -1,22 +1,42 @@
 package com.github.daniilbug.firebase_data
 
-import com.github.daniilbug.data.GetMailsResult
+import com.github.daniilbug.data.MailsResult
 import com.github.daniilbug.data.Mail
 import com.github.daniilbug.data.MailsRepository
-import kotlinx.coroutines.delay
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 
-class FirebaseMailRepository: MailsRepository {
-    private val mails = List(100) { index ->
-        Mail("$index", "$index", "$index", "Message $index", index % 2 - 1, System.currentTimeMillis())
+@ExperimentalCoroutinesApi
+class FirebaseMailRepository : MailsRepository {
+    private val mailsDb = Firebase.database.getReference("mails")
+    private val usersDb = Firebase.database.getReference("users")
+
+    override suspend fun getMyMailsFirstPage(userId: String, pageSize: Int): MailsResult {
+        return getMails(userId, 0, pageSize)
     }
 
-    override suspend fun getMyMails(userId: String, page: Int, pageSize: Int): GetMailsResult {
-        delay(2000L)
-        val nextPage = if (page * pageSize >= mails.size) null else page + 1
-        return GetMailsResult(mails.subList((page - 1) * pageSize, page * pageSize), nextPage)
+    override suspend fun getMyMailsByPage(userId: String, pageId: Any, pageSize: Int): MailsResult {
+        val lastMailId = pageId as? Long ?: error("pageId must be String for FirebaseMailRepository")
+        return getMails(userId, lastMailId, pageSize)
     }
 
     override suspend fun sendMail(mail: Mail) {
+        if (mail.content.isBlank()) error("Mail content must not be blank")
+        val userIds = usersDb.getKeys()
+        val receiverId = userIds.random()
+        mailsDb.child(receiverId).child(mail.id).setValue(mail.toFirebase())
+    }
 
+    private suspend fun getMails(userId: String, pageId: Long, pageSize: Int): MailsResult {
+        val loadedResult = mailsDb.child(userId)
+            .orderByChild("date")
+            .endAt(pageId.toDouble())
+            .limitToFirst(pageSize)
+            .getListWithKeys<FirebaseMail>()
+        if (loadedResult.isEmpty()) return MailsResult(listOf(), null)
+        val mails = loadedResult.map { mailWithId -> mailWithId.data.toMail(mailWithId.key) }
+        val nextPage = loadedResult.last().data.date - 1
+        return MailsResult(mails, nextPage)
     }
 }

@@ -7,6 +7,7 @@ import com.github.daniilbug.auth.exceptions.WeakPasswordException
 import com.github.daniilbug.auth.exceptions.WrongEmailFormatException
 import com.google.firebase.auth.*
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 
 class FirebaseAuthProvider: AuthProvider {
@@ -14,7 +15,8 @@ class FirebaseAuthProvider: AuthProvider {
 
     override suspend fun signIn(email: String, password: String) {
         try {
-            firebaseAuth.signIn(email, password)
+            val uid = firebaseAuth.signIn(email, password)
+            Firebase.database.getReference("users").child(uid).setValue(User(email))
         } catch (e: FirebaseAuthInvalidCredentialsException) {
             throw InvalidLoginOrPasswordException()
         } catch (e: FirebaseAuthInvalidUserException) {

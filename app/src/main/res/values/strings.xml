@@ -14,4 +14,6 @@
     <string name="invalid_login_or_password_error">Invalid login or password</string>
     <string name="weak_password_error">Your password is too weak</string>
     <string name="wrong_email_format_error">Your email is written in wrong format</string>
+    <string name="success">Success!</string>
+    <string name="blank_message">Your message must not be blank</string>
 </resources>

@@ -59,7 +59,7 @@ class MailListFragment: BaseFragment(R.layout.fragment_messages_list, needBottom
         }
     }
 
-    private fun hideLoading() {
+    private fun hideLoading() = view?.run {
         messagesListProgressBar.isVisible = false
     }
 

@@ -32,10 +32,13 @@ dependencies {
     implementation project(path: ':auth')
 
     //Firebase auth
-    implementation 'com.google.firebase:firebase-auth-ktx:19.3.1'
+    implementation 'com.google.firebase:firebase-auth-ktx:19.3.2'
 
     //Coroutines
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
+
+    //Firebase Db
+    implementation 'com.google.firebase:firebase-database-ktx:19.3.1'
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'

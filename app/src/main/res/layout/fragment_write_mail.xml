@@ -4,6 +4,7 @@
     android:id="@+id/writeMailMotionLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:clipChildren="false"
     app:layoutDescription="@xml/write_mail_scene">
 
     <com.google.android.material.card.MaterialCardView
