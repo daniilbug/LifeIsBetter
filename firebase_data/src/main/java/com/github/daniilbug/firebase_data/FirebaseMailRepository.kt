@@ -3,6 +3,7 @@ package com.github.daniilbug.firebase_data
 import com.github.daniilbug.data.GetMailsResult
 import com.github.daniilbug.data.Mail
 import com.github.daniilbug.data.MailsRepository
+import kotlinx.coroutines.delay
 
 class FirebaseMailRepository: MailsRepository {
     private val mails = List(100) { index ->
@@ -10,7 +11,8 @@ class FirebaseMailRepository: MailsRepository {
     }
 
     override suspend fun getMyMails(userId: String, page: Int, pageSize: Int): GetMailsResult {
-        val nextPage = if (page * pageSize >= mails.size) -1 else page + 1
+        delay(2000L)
+        val nextPage = if (page * pageSize >= mails.size) null else page + 1
         return GetMailsResult(mails.subList((page - 1) * pageSize, page * pageSize), nextPage)
     }
 

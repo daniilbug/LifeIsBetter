@@ -4,10 +4,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatImageView
+import androidx.core.view.isVisible
 import androidx.paging.LoadState
 import androidx.paging.LoadStateAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.github.daniilbug.lifeisbetter.R
+import com.google.android.material.card.MaterialCardView
+import com.google.android.material.progressindicator.ProgressIndicator
+import java.lang.Exception
 
 class MailListLoadingAdapter: LoadStateAdapter<MailListLoadingAdapter.ViewHolder>() {
 
@@ -22,7 +26,9 @@ class MailListLoadingAdapter: LoadStateAdapter<MailListLoadingAdapter.ViewHolder
     }
 
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+        private val card: MaterialCardView = itemView.findViewById(R.id.itemLoadingCard)
         private val image: AppCompatImageView = itemView.findViewById(R.id.itemLoadingImage)
+        private val progressBar: ProgressIndicator = itemView.findViewById(R.id.itemLoadingProgressBar)
 
         fun bind(loadState: LoadState) {
             when (loadState) {
@@ -31,7 +37,13 @@ class MailListLoadingAdapter: LoadStateAdapter<MailListLoadingAdapter.ViewHolder
         }
 
         private fun showLoading() {
-            image.setImageResource(R.drawable.ic_mailbox_loading)
+            card.isVisible = false
+            progressBar.isVisible = true
+        }
+
+        private fun showError(ex: Exception) {
+            progressBar.isVisible = false
+            card.isVisible = true
         }
     }
 }

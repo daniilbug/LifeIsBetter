@@ -18,7 +18,7 @@ import java.util.*
 @ExperimentalCoroutinesApi
 class MailListViewModel(private val mailListInteractor: MailListInteractor): ViewModel() {
 
-    val state = Pager(config = PagingConfig(pageSize = 10, initialLoadSize = 10), pagingSourceFactory = { createDataSource() })
+    val state = Pager(config = PagingConfig(pageSize = 20, initialLoadSize = 20), pagingSourceFactory = { createDataSource() })
         .flow
         .map { mails -> mails.map { mail -> mail.toMailView() } }
         .cachedIn(viewModelScope)
@@ -30,19 +30,10 @@ class MailListViewModel(private val mailListInteractor: MailListInteractor): Vie
             val page = params.key ?: 1
             val pageSize = params.loadSize
             return try {
-                val nextPage: Int
-                val data: List<Mail>
-                if (page == -1) {
-                    nextPage = -1
-                    data = listOf()
-                } else {
-                    val loadedMails = mailListInteractor.getMails(page, pageSize)
-                    data = loadedMails.mails
-                    nextPage = loadedMails.nextPage
-                }
+                val loadedData = mailListInteractor.getMails(page, pageSize)
                 LoadResult.Page(
-                    data = data ,
-                    nextKey = nextPage,
+                    data = loadedData.mails,
+                    nextKey = loadedData.nextPage,
                     prevKey = null
                 )
             } catch (ex: Exception) {
