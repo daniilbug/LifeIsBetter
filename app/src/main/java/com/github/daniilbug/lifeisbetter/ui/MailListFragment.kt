@@ -12,6 +12,7 @@ import com.github.daniilbug.lifeisbetter.R
 import com.github.daniilbug.lifeisbetter.adapter.MailListAdapter
 import com.github.daniilbug.lifeisbetter.adapter.MailListLoadingAdapter
 import com.github.daniilbug.lifeisbetter.utils.BaseFragment
+import com.github.daniilbug.lifeisbetter.viewmodel.MailView
 import com.github.daniilbug.lifeisbetter.viewmodel.maillist.MailListViewModel
 import kotlinx.android.synthetic.main.fragment_messages_list.*
 import kotlinx.android.synthetic.main.fragment_messages_list.view.*
@@ -32,10 +33,10 @@ class MailListFragment: BaseFragment(R.layout.fragment_messages_list, needBottom
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         mailAdapter =
-            MailListAdapter(onClick = { card, id ->
+            MailListAdapter(onClick = { card, mail ->
                 showDetails(
                     card,
-                    id
+                    mail
                 )
             })
         view.messagesListRecycler.adapter = mailAdapter.withLoadStateHeaderAndFooter(MailListLoadingAdapter(), MailListLoadingAdapter())
@@ -67,9 +68,9 @@ class MailListFragment: BaseFragment(R.layout.fragment_messages_list, needBottom
         messagesListProgressBar.isVisible = true
     }
 
-    private fun showDetails(card: View, id: String) {
-        val extras = FragmentNavigatorExtras(card to id)
-        val args = bundleOf("messageId" to id)
+    private fun showDetails(card: View, mail: MailView) {
+        val extras = FragmentNavigatorExtras(card to mail.id)
+        val args = bundleOf("mail" to mail)
         NavHostFragment.findNavController(this).navigate(R.id.showMessageDetails, args, null, extras)
     }
 }

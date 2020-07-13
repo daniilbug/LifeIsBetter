@@ -1,4 +1,4 @@
-package com.github.daniilbug.data
+package com.github.daniilbug.lifeisbetter
 
 interface StringResolver {
     fun getString(stringId: Int): String

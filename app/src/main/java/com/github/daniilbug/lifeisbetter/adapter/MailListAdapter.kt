@@ -7,16 +7,15 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import androidx.viewpager.widget.PagerAdapter
 import com.github.daniilbug.lifeisbetter.R
+import com.github.daniilbug.lifeisbetter.viewmodel.MailFeedBack
 import com.github.daniilbug.lifeisbetter.viewmodel.MailView
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.textview.MaterialTextView
 
 class MailListAdapter(
-    private val onClick: (card: View, messageId: String) -> Unit
+    private val onClick: (card: View, mail: MailView) -> Unit
 ): PagingDataAdapter<MailView, MailListAdapter.ViewHolder>(
     DiffCallback
 ) {
@@ -53,13 +52,13 @@ class MailListAdapter(
             itemView.transitionName = message.id
             messageText.text = message.text
             messageDate.text = DateFormat.getDateFormat(itemView.context).format(message.date)
-            val imageResource = if (message.isOpened) R.drawable.ic_letter_opened else R.drawable.ic_letter_closed
+            val imageResource = if (message.feedBack == MailFeedBack.NONE) R.drawable.ic_letter_closed else R.drawable.ic_letter_opened
             messageImage.setImageResource(imageResource)
         }
 
         fun onItemClicked(position: Int) {
             val message = getItem(position) ?: return
-            onClick(messageCard, message.id)
+            onClick(messageCard, message)
         }
     }
 }

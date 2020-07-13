@@ -7,6 +7,8 @@ import com.github.daniilbug.data.MailsResult
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 
 @ExperimentalCoroutinesApi
 class FirebaseMailRepository : MailsRepository {
@@ -21,7 +23,15 @@ class FirebaseMailRepository : MailsRepository {
 
     override suspend fun sendMail(mail: Mail) {
         if (mail.content.isBlank()) throw BlankMailException()
-        mailsDb.addValue(mail.toFirebase())
+        mailsDb.document(mail.id).setValue(mail.toFirebase())
+    }
+
+    override suspend fun updateMailFeedback(mailId: String, feedback: Int) {
+        mailsDb.document(mailId).updateValue("feedback", feedback)
+    }
+
+    override fun getMailById(mailId: String): Flow<Mail> {
+        return mailsDb.document(mailId).flow<FirebaseMail>().map { fbMail -> fbMail.toMail() }
     }
 
     private suspend fun getMails(pageId: Long?, pageSize: Int): MailsResult {

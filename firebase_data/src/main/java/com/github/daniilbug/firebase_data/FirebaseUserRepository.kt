@@ -9,7 +9,7 @@ class FirebaseUserRepository : UserRepository {
     private val usersDb = Firebase.firestore.collection("users")
 
     override suspend fun addUser(user: User) {
-        usersDb.addValue(user.toFirebase())
+        usersDb.document(user.id).setValue(user.toFirebase())
     }
 
     override suspend fun getRandomUser(exceptUserId: String): User {

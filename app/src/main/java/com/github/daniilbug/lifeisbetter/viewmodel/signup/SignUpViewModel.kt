@@ -8,7 +8,7 @@ import com.github.daniilbug.auth.exceptions.ConfirmPasswordIsWrongException
 import com.github.daniilbug.auth.exceptions.UserAlreadyExistsException
 import com.github.daniilbug.auth.exceptions.WeakPasswordException
 import com.github.daniilbug.auth.exceptions.WrongEmailFormatException
-import com.github.daniilbug.data.StringResolver
+import com.github.daniilbug.lifeisbetter.StringResolver
 import com.github.daniilbug.domain.interactor.SignUpInteractor
 import com.github.daniilbug.lifeisbetter.R
 import com.github.daniilbug.lifeisbetter.utils.StatusLiveData

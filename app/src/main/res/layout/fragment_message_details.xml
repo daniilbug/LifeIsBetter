@@ -29,14 +29,14 @@
             android:id="@+id/messageDetailsDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="8dp"
-            tools:text="13.05.1998"
+            android:layout_margin="16dp"
             android:drawableStart="@drawable/ic_date"
             android:drawablePadding="4dp"
+            android:elevation="4dp"
+            android:padding="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_margin="16dp"
-            android:elevation="4dp"/>
+            tools:text="13.05.1998" />
 
         <View
             android:id="@+id/messageDetailsTopImage"
@@ -91,63 +91,61 @@
             android:id="@+id/messageDetailsSpacer"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:layout_constraintTop_toBottomOf="@id/messageDetailsCard"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toTopOf="@id/messageDetailsButtons"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/messageDetailsCard" />
 
-        <androidx.constraintlayout.helper.widget.Flow
+        <RadioGroup
             android:id="@+id/messageDetailsButtons"
             android:layout_width="0dp"
             android:layout_height="100dp"
-            app:constraint_referenced_ids="messageDetailsBadButton, messageDetailsNeutralButton,messageDetailsGoodButton"
+            android:gravity="center"
+            android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/messageDetailsSpacer"
-            app:flow_horizontalStyle="spread"/>
+            app:layout_constraintTop_toBottomOf="@id/messageDetailsSpacer">
 
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/messageDetailsGoodButton"
-            android:layout_width="56dp"
-            android:layout_height="56dp"
-            android:background="@drawable/circle"
-            android:elevation="2dp"
-            android:foreground="?selectableItemBackgroundBorderless"
-            android:scaleX="0"
-            android:scaleY="0"
-            android:src="@drawable/ic_good"
-            app:fabSize="normal"
-            tools:scaleX="1"
-            tools:scaleY="1" />
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:id="@+id/messageDetailsBadButton"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_margin="16dp"
+                android:background="@drawable/ic_bad_button"
+                android:button="@android:color/transparent"
+                android:elevation="2dp"
+                android:scaleX="0"
+                android:scaleY="0"
+                tools:scaleX="1"
+                tools:scaleY="1" />
 
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/messageDetailsNeutralButton"
-            android:layout_width="56dp"
-            android:layout_height="56dp"
-            android:background="@drawable/circle"
-            android:elevation="2dp"
-            android:foreground="?selectableItemBackgroundBorderless"
-            android:scaleX="0"
-            android:scaleY="0"
-            android:src="@drawable/ic_neutral"
-            app:fabSize="normal"
-            tools:scaleX="1"
-            tools:scaleY="1" />
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:id="@+id/messageDetailsNeutralButton"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_margin="16dp"
+                android:background="@drawable/ic_neutral_button"
+                android:button="@android:color/transparent"
+                android:elevation="2dp"
+                android:scaleX="0"
+                android:scaleY="0"
+                tools:scaleX="1"
+                tools:scaleY="1" />
 
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/messageDetailsBadButton"
-            android:layout_width="56dp"
-            android:layout_height="56dp"
-            android:background="@drawable/circle"
-            android:elevation="2dp"
-            android:foreground="?selectableItemBackgroundBorderless"
-            android:scaleX="0"
-            android:scaleY="0"
-            android:src="@drawable/ic_bad"
-            app:fabSize="normal"
-            tools:scaleX="1"
-            tools:scaleY="1" />
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:id="@+id/messageDetailsGoodButton"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_margin="16dp"
+                android:background="@drawable/ic_good_button"
+                android:button="@android:color/transparent"
+                android:elevation="2dp"
+                android:scaleX="0"
+                android:scaleY="0"
+                tools:scaleX="1"
+                tools:scaleY="1" />
+        </RadioGroup>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

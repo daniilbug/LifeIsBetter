@@ -12,7 +12,7 @@
         <action
             android:id="@+id/showMessageDetails"
             app:destination="@id/messageDetailsFragment" >
-            <argument android:name="messageId" app:argType="string" app:nullable="false" />
+            <argument android:name="mail" app:nullable="false" />
         </action>
 
 

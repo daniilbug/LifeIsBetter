@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.github.daniilbug.auth.exceptions.InvalidLoginOrPasswordException
 import com.github.daniilbug.auth.exceptions.WrongEmailFormatException
-import com.github.daniilbug.data.StringResolver
+import com.github.daniilbug.lifeisbetter.StringResolver
 import com.github.daniilbug.domain.interactor.SignInInteractor
 import com.github.daniilbug.lifeisbetter.R
 import com.github.daniilbug.lifeisbetter.utils.StatusLiveData
