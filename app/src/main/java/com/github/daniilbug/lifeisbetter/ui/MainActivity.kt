@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
+import androidx.navigation.ui.setupWithNavController
 import com.github.daniilbug.lifeisbetter.R
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -27,6 +28,6 @@ class MainActivity : AppCompatActivity() {
     private fun setUpBottomNavigation() {
         val navHostFragment = supportFragmentManager
             .findFragmentById(R.id.navHostFragment) as? NavHostFragment ?: return
-        NavigationUI.setupWithNavController(mainBottomNavigation, navHostFragment.navController)
+        mainBottomNavigation.setupWithNavController(navHostFragment.navController)
     }
 }

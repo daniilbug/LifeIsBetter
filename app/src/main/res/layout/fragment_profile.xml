@@ -1,106 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/profileSwipeRefresh"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:clipChildren="false">
+    android:backgroundTint="?colorSecondary">
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:layout_width="78dp"
-        android:layout_height="78dp"
-        android:elevation="2dp"
-        android:src="@drawable/ic_profile"
-        app:layout_constraintBottom_toBottomOf="@id/profileOverlapSpacer"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/profileTopBackground" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipChildren="false">
 
-    <View
-        android:id="@+id/profileTopBackground"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="?colorPrimary"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent="0.3"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="78dp"
+            android:layout_height="78dp"
+            android:elevation="2dp"
+            android:src="@drawable/ic_profile"
+            app:layout_constraintBottom_toBottomOf="@id/profileOverlapSpacer"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/profileTopBackground" />
 
-    <Space
-        android:id="@+id/profileOverlapSpacer"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="50dp"
-        app:layout_constraintBottom_toBottomOf="@id/profileTopBackground"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        <View
+            android:id="@+id/profileTopBackground"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="?colorPrimary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/profileResultsCard"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:minHeight="100dp"
-        app:cardElevation="2dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/profileOverlapSpacer">
+        <Space
+            android:id="@+id/profileOverlapSpacer"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="50dp"
+            app:layout_constraintBottom_toBottomOf="@id/profileTopBackground"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/profileResultsCard"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:minHeight="100dp"
+            app:cardElevation="2dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/profileOverlapSpacer">
 
 
-    </com.google.android.material.card.MaterialCardView>
+        </com.google.android.material.card.MaterialCardView>
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/profileAllMessagesIcon"
-        android:layout_width="100dp"
-        android:layout_height="32dp"
-        android:layout_marginBottom="8dp"
-        android:elevation="2dp"
-        android:src="@drawable/ic_letter_closed"
-        app:layout_constraintBottom_toBottomOf="@id/profileResultsCard"
-        app:layout_constraintEnd_toEndOf="@id/profileResultsCard"
-        app:layout_constraintStart_toEndOf="@id/profileGoodMessagesIcon"
-        app:layout_constraintTop_toTopOf="@id/profileResultsCard" />
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/profileAllMessagesIcon"
+            android:layout_width="100dp"
+            android:layout_height="32dp"
+            android:layout_marginBottom="8dp"
+            android:elevation="2dp"
+            android:src="@drawable/ic_letter_closed"
+            app:layout_constraintBottom_toBottomOf="@id/profileResultsCard"
+            app:layout_constraintEnd_toEndOf="@id/profileResultsCard"
+            app:layout_constraintStart_toEndOf="@id/profileGoodMessagesIcon"
+            app:layout_constraintTop_toTopOf="@id/profileResultsCard" />
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/profileGoodMessagesIcon"
-        android:layout_width="100dp"
-        android:layout_height="32dp"
-        android:layout_marginBottom="8dp"
-        android:elevation="2dp"
-        android:src="@drawable/ic_good"
-        app:layout_constraintBottom_toBottomOf="@id/profileResultsCard"
-        app:layout_constraintEnd_toStartOf="@id/profileAllMessagesIcon"
-        app:layout_constraintStart_toStartOf="@id/profileResultsCard"
-        app:layout_constraintTop_toTopOf="@id/profileResultsCard" />
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/profileGoodMessagesIcon"
+            android:layout_width="100dp"
+            android:layout_height="32dp"
+            android:layout_marginBottom="8dp"
+            android:elevation="2dp"
+            android:src="@drawable/ic_good"
+            app:layout_constraintBottom_toBottomOf="@id/profileResultsCard"
+            app:layout_constraintEnd_toStartOf="@id/profileAllMessagesIcon"
+            app:layout_constraintStart_toStartOf="@id/profileResultsCard"
+            app:layout_constraintTop_toTopOf="@id/profileResultsCard" />
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/profileAllMessagesCount"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:elevation="2dp"
-        android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="@id/profileAllMessagesIcon"
-        app:layout_constraintStart_toStartOf="@id/profileAllMessagesIcon"
-        app:layout_constraintTop_toBottomOf="@id/profileAllMessagesIcon"
-        tools:text="128" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/profileAllMessagesCount"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:elevation="2dp"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="@id/profileAllMessagesIcon"
+            app:layout_constraintStart_toStartOf="@id/profileAllMessagesIcon"
+            app:layout_constraintTop_toBottomOf="@id/profileAllMessagesIcon"
+            tools:text="128" />
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/profileGoodMessagesCount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:elevation="2dp"
-        app:layout_constraintEnd_toEndOf="@id/profileGoodMessagesIcon"
-        app:layout_constraintStart_toStartOf="@id/profileGoodMessagesIcon"
-        app:layout_constraintTop_toBottomOf="@id/profileGoodMessagesIcon"
-        tools:text="28" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/profileGoodMessagesCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="2dp"
+            app:layout_constraintEnd_toEndOf="@id/profileGoodMessagesIcon"
+            app:layout_constraintStart_toStartOf="@id/profileGoodMessagesIcon"
+            app:layout_constraintTop_toBottomOf="@id/profileGoodMessagesIcon"
+            tools:text="28" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/profileLogOutButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:src="@drawable/ic_logout"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/profileLogOutButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:src="@drawable/ic_logout"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

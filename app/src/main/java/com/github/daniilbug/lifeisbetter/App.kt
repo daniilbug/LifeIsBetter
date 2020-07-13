@@ -13,11 +13,13 @@ import com.github.daniilbug.firebase_data.FirebaseUserRepository
 import com.github.daniilbug.lifeisbetter.viewmodel.MailView
 import com.github.daniilbug.lifeisbetter.viewmodel.maildetails.MailDetailsViewModel
 import com.github.daniilbug.lifeisbetter.viewmodel.maillist.MailListViewModel
+import com.github.daniilbug.lifeisbetter.viewmodel.profile.ProfileViewModel
 import com.github.daniilbug.lifeisbetter.viewmodel.signin.SignInViewModel
 import com.github.daniilbug.lifeisbetter.viewmodel.signup.SignUpViewModel
 import com.github.daniilbug.lifeisbetter.viewmodel.writemail.WriteMailViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
+import org.koin.android.ext.android.get
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.context.startKoin
@@ -42,9 +44,10 @@ class App : Application() {
         val interactorModule = module {
             factory { SignInInteractor(get(), get()) }
             factory { SignUpInteractor(get(), get()) }
-            factory { MailListInteractor(get()) }
+            factory { MailListInteractor(get(), get()) }
             factory { WriteMailInteractor(get(), get(), get()) }
             factory { MailDetailsInteractor(get()) }
+            factory { ProfileInteractor(get(), get()) }
         }
 
         val viewModelModule = module {
@@ -53,6 +56,7 @@ class App : Application() {
             viewModel { MailListViewModel(get()) }
             viewModel { WriteMailViewModel(get()) }
             viewModel { (mailView: MailView) -> MailDetailsViewModel(mailView, get()) }
+            viewModel { ProfileViewModel(get()) }
         }
 
         startKoin {

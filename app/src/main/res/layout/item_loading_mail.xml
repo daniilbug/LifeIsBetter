@@ -40,5 +40,5 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:visibility="gone"
-        app:indicatorColor="?colorSurface" />
+        app:indicatorColor="?colorPrimaryVariant" />
 </FrameLayout>

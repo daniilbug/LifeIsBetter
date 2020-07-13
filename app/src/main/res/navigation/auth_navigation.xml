@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/auth_navigation"
+    app:startDestination="@id/signInFragment">
+    <fragment
+        android:id="@+id/signInFragment"
+        android:name="com.github.daniilbug.lifeisbetter.ui.SignInFragment"
+        tools:layout="@layout/fragment_sign_in"
+        android:label="SignInFragment">
+        <action
+            android:id="@+id/openSignUp"
+            app:destination="@id/signUpFragment" />
+        <action
+            android:id="@+id/signIn"
+            app:popUpTo="@id/signInFragment"
+            app:popUpToInclusive="true"
+            app:destination="@id/main_navigation.xml" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUpFragment"
+        android:name="com.github.daniilbug.lifeisbetter.ui.SignUpFragment"
+        tools:layout="@layout/fragment_sign_up"
+        android:label="SignUpFragment" />
+    <include app:graph="@navigation/main_navigation" />
+</navigation>

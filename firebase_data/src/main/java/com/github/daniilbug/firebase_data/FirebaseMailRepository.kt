@@ -1,9 +1,6 @@
 package com.github.daniilbug.firebase_data
 
-import com.github.daniilbug.data.BlankMailException
-import com.github.daniilbug.data.Mail
-import com.github.daniilbug.data.MailsRepository
-import com.github.daniilbug.data.MailsResult
+import com.github.daniilbug.data.*
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -14,9 +11,9 @@ import kotlinx.coroutines.flow.map
 class FirebaseMailRepository : MailsRepository {
     private val mailsDb = Firebase.firestore.collection("mails")
 
-    override suspend fun getMyMails(page: Any?, pageSize: Int): MailsResult {
+    override suspend fun getMyMails(userId: String, page: Any?, pageSize: Int): MailsResult {
         if (page is Long?) {
-            return getMails(page, pageSize)
+            return getMails(userId, page, pageSize)
         }
         error("page must be Long or null for ${FirebaseMailRepository::class.simpleName}")
     }
@@ -30,12 +27,20 @@ class FirebaseMailRepository : MailsRepository {
         mailsDb.document(mailId).updateValue("feedback", feedback)
     }
 
+    override suspend fun getMyMailsStatistic(userId: String): MailsStatistic {
+        val myMails = mailsDb.whereEqualTo("senderId", userId)
+            .loadList<FirebaseMail>()
+        val goodAmount = myMails.count { mail -> mail.feedback == 2 }
+        return MailsStatistic(myMails.size, goodAmount)
+    }
+
     override fun getMailById(mailId: String): Flow<Mail> {
         return mailsDb.document(mailId).flow<FirebaseMail>().map { fbMail -> fbMail.toMail() }
     }
 
-    private suspend fun getMails(pageId: Long?, pageSize: Int): MailsResult {
-        val fbMails = mailsDb.orderBy("date")
+    private suspend fun getMails(userId: String, pageId: Long?, pageSize: Int): MailsResult {
+        val fbMails = mailsDb.whereEqualTo("receiverId", userId)
+            .orderBy("date")
             .limit(pageSize.toLong())
             .startAfter(pageId)
             .loadList<FirebaseMail>()
