@@ -1,3 +1,5 @@
+include ':notifications'
+include ':firebase_notifications'
 include ':firebase_data'
 include ':firebase_auth'
 include ':auth'

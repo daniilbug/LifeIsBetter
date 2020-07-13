@@ -13,9 +13,10 @@ import com.google.firebase.ktx.Firebase
 class FirebaseAuthProvider : AuthProvider {
     private val firebaseAuth = Firebase.auth
 
-    override suspend fun signIn(email: String, password: String) {
+    override suspend fun signIn(email: String, password: String): AuthUser {
         try {
-            firebaseAuth.signIn(email, password)
+            val uid = firebaseAuth.signIn(email, password)
+            return AuthUser(uid, email)
         } catch (e: FirebaseAuthInvalidCredentialsException) {
             throw InvalidLoginOrPasswordException()
         } catch (e: FirebaseAuthInvalidUserException) {

@@ -4,15 +4,18 @@ import com.github.daniilbug.auth.UserSessionProvider
 import com.github.daniilbug.auth.exceptions.UserIsNotAuthorizedException
 import com.github.daniilbug.data.MailsRepository
 import com.github.daniilbug.data.MailsStatistic
+import com.github.daniilbug.notifications.NotificationSubscriptionManager
 
 class ProfileInteractor(
     private val mailsRepository: MailsRepository,
+    private val notificationSubscriptionManager: NotificationSubscriptionManager,
     userSessionProvider: UserSessionProvider
 ) {
     private val session = userSessionProvider.getUserSession() ?: throw UserIsNotAuthorizedException()
 
     suspend fun logOut() {
         session.logOut()
+        notificationSubscriptionManager.unsubscribe(session.userId)
     }
 
     suspend fun getStatistic(): MailsStatistic {

@@ -8,14 +8,19 @@ import androidx.paging.PagingSource
 import androidx.paging.cachedIn
 import com.github.daniilbug.data.Mail
 import com.github.daniilbug.domain.interactor.MailListInteractor
+import com.github.daniilbug.lifeisbetter.StringResolver
 import com.github.daniilbug.lifeisbetter.viewmodel.MailFeedBack
 import com.github.daniilbug.lifeisbetter.viewmodel.MailView
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.map
+import java.lang.IllegalStateException
 import java.util.*
 
 @ExperimentalCoroutinesApi
-class MailListViewModel(private val mailListInteractor: MailListInteractor) : ViewModel() {
+class MailListViewModel(
+    private val mailListInteractor: MailListInteractor
+) : ViewModel() {
+    object EmptyListException: Exception()
 
     val state = Pager(
         config = PagingConfig(pageSize = 20, initialLoadSize = 20),
@@ -24,15 +29,8 @@ class MailListViewModel(private val mailListInteractor: MailListInteractor) : Vi
         .map { mails -> mails.map { mail -> mail.toMailView() } }
         .cachedIn(viewModelScope)
 
-    private fun Mail.toMailView() = MailView(id, content, Date(date), convertFeedback(feedback))
-
-    private fun convertFeedback(feedback: Int) = when (feedback) {
-        -1 -> MailFeedBack.NONE
-        0 -> MailFeedBack.BAD
-        1 -> MailFeedBack.NEUTRAL
-        2 -> MailFeedBack.GOOD
-        else -> error("Invalid value for feedback field")
-    }
+    private fun Mail.toMailView() =
+        MailView(id, content, Date(date), MailFeedBack.fromNumber(feedback))
 
     private fun createDataSource() = object : PagingSource<Any, Mail>() {
         override suspend fun load(params: LoadParams<Any>): LoadResult<Any, Mail> {
@@ -40,13 +38,17 @@ class MailListViewModel(private val mailListInteractor: MailListInteractor) : Vi
             val pageSize = params.loadSize
             return try {
                 val loadedData = mailListInteractor.getMailsByPage(page, pageSize)
-                LoadResult.Page(
-                    data = loadedData.mails,
-                    nextKey = loadedData.nextPage,
-                    prevKey = null
-                )
+                if (loadedData.mails.isEmpty() && page == null) {
+                    LoadResult.Error(EmptyListException)
+                } else {
+                    LoadResult.Page(
+                        data = loadedData.mails,
+                        nextKey = loadedData.nextPage,
+                        prevKey = null
+                    )
+                }
             } catch (ex: Exception) {
-                throw ex
+                return LoadResult.Error(ex)
             }
         }
     }

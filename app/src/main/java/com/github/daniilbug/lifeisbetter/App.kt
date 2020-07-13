@@ -17,6 +17,10 @@ import com.github.daniilbug.lifeisbetter.viewmodel.profile.ProfileViewModel
 import com.github.daniilbug.lifeisbetter.viewmodel.signin.SignInViewModel
 import com.github.daniilbug.lifeisbetter.viewmodel.signup.SignUpViewModel
 import com.github.daniilbug.lifeisbetter.viewmodel.writemail.WriteMailViewModel
+import com.github.daniilbug.notifications.FirebaseNotificationSender
+import com.github.daniilbug.notifications.FirebaseNotificationSubscriptionManager
+import com.github.daniilbug.notifications.NotificationSender
+import com.github.daniilbug.notifications.NotificationSubscriptionManager
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import org.koin.android.ext.android.get
@@ -41,13 +45,18 @@ class App : Application() {
             single<UserRepository> { FirebaseUserRepository() }
         }
 
+        val notificationModule = module {
+            single<NotificationSubscriptionManager> { FirebaseNotificationSubscriptionManager() }
+            single<NotificationSender> { FirebaseNotificationSender() }
+        }
+
         val interactorModule = module {
-            factory { SignInInteractor(get(), get()) }
+            factory { SignInInteractor(get(), get(), get()) }
             factory { SignUpInteractor(get(), get()) }
             factory { MailListInteractor(get(), get()) }
-            factory { WriteMailInteractor(get(), get(), get()) }
+            factory { WriteMailInteractor(get(), get(), get(), get()) }
             factory { MailDetailsInteractor(get()) }
-            factory { ProfileInteractor(get(), get()) }
+            factory { ProfileInteractor(get(), get(), get()) }
         }
 
         val viewModelModule = module {
@@ -61,7 +70,7 @@ class App : Application() {
 
         startKoin {
             androidContext(this@App)
-            modules(authModule, dataModule, interactorModule, viewModelModule)
+            modules(authModule, dataModule, notificationModule, interactorModule, viewModelModule)
         }
     }
 }

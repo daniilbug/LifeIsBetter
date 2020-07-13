@@ -17,6 +17,8 @@
             <option value="$PROJECT_DIR$/domain" />
             <option value="$PROJECT_DIR$/firebase_auth" />
             <option value="$PROJECT_DIR$/firebase_data" />
+            <option value="$PROJECT_DIR$/firebase_notifications" />
+            <option value="$PROJECT_DIR$/notifications" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

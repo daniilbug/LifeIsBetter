@@ -23,7 +23,6 @@ class ProfileFragment: BaseFragment(R.layout.fragment_profile, needBottomNavigat
                 viewModel.sendEvent(ProfileEvent.LogOut)
             }
             profileSwipeRefresh.setColorSchemeResources(R.color.colorOrangeDark, R.color.colorOrangeDark, R.color.colorOrangeDark)
-            profileSwipeRefresh.isRefreshing = true
             profileSwipeRefresh.setOnRefreshListener { viewModel.sendEvent(ProfileEvent.Refresh) }
         }
     }
@@ -43,6 +42,10 @@ class ProfileFragment: BaseFragment(R.layout.fragment_profile, needBottomNavigat
     private fun showStatistic(mailsAmount: Int, goodMailsAmount: Int) = view?.run {
         profileGoodMessagesCount.text = goodMailsAmount.toString()
         profileAllMessagesCount.text = mailsAmount.toString()
+        profileGoodMessagesCount.alpha = 0f
+        profileAllMessagesCount.alpha = 0f
+        profileGoodMessagesCount.animate().alpha(1f).setDuration(300L).start()
+        profileAllMessagesCount.animate().alpha(1f).setDuration(300L).start()
         profileSwipeRefresh.isRefreshing = false
     }
 

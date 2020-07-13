@@ -16,4 +16,5 @@
     <string name="wrong_email_format_error">Your email is written in wrong format</string>
     <string name="success">Success!</string>
     <string name="blank_message">Your message must not be blank</string>
+    <string name="empty_mailbox">Your mailbox is empty now..</string>
 </resources>

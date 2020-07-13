@@ -32,18 +32,14 @@ class MailListLoadingAdapter: LoadStateAdapter<MailListLoadingAdapter.ViewHolder
 
         fun bind(loadState: LoadState) {
             when (loadState) {
-                is LoadState.Loading -> showLoading()
+                is LoadState.Loading -> showLoading(loadState.endOfPaginationReached)
             }
         }
 
-        private fun showLoading() {
+        private fun showLoading(isEnd: Boolean) {
+            if (isEnd) return
             card.isVisible = false
             progressBar.isVisible = true
-        }
-
-        private fun showError(ex: Exception) {
-            progressBar.isVisible = false
-            card.isVisible = true
         }
     }
 }
