@@ -5,13 +5,16 @@ import com.github.daniilbug.auth.AuthProvider
 import com.github.daniilbug.auth.UserSessionProvider
 import com.github.daniilbug.data.MailsRepository
 import com.github.daniilbug.data.StringResolver
+import com.github.daniilbug.data.UserRepository
 import com.github.daniilbug.domain.interactor.MailListInteractor
 import com.github.daniilbug.domain.interactor.SignInInteractor
 import com.github.daniilbug.domain.interactor.SignUpInteractor
 import com.github.daniilbug.domain.interactor.WriteMailInteractor
 import com.github.daniilbug.firebase_auth.FirebaseAuthProvider
+import com.github.daniilbug.firebase_auth.FirebaseUserSession
 import com.github.daniilbug.firebase_auth.FirebaseUserSessionProvider
 import com.github.daniilbug.firebase_data.FirebaseMailRepository
+import com.github.daniilbug.firebase_data.FirebaseUserRepository
 import com.github.daniilbug.lifeisbetter.adapter.MailListAdapter
 import com.github.daniilbug.lifeisbetter.viewmodel.maillist.MailListViewModel
 import com.github.daniilbug.lifeisbetter.viewmodel.signin.SignInViewModel
@@ -38,13 +41,14 @@ class App : Application() {
         val dataModule = module {
             single<StringResolver> { ResourceStringResolver(get()) }
             single<MailsRepository> { FirebaseMailRepository() }
+            single<UserRepository> { FirebaseUserRepository() }
         }
 
         val interactorModule = module {
             factory { SignInInteractor(get(), get()) }
-            factory { SignUpInteractor(get()) }
-            factory { MailListInteractor(get(), get()) }
-            factory { WriteMailInteractor(get(), get()) }
+            factory { SignUpInteractor(get(), get()) }
+            factory { MailListInteractor(get()) }
+            factory { WriteMailInteractor(get(), get(), get()) }
         }
 
         val viewModelModule = module {

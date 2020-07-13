@@ -9,14 +9,26 @@ import kotlinx.coroutines.flow.callbackFlow
 import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
 
-suspend fun FirebaseAuth.signUp(email: String, password: String) = suspendCoroutine<Unit> { cont ->
-    val task = createUserWithEmailAndPassword(email, password)
-    task.addOnSuccessListener { cont.resumeWith(Result.success(Unit)) }
-    task.addOnFailureListener { ex -> cont.resumeWithException(ex) }
-}
+suspend fun FirebaseAuth.signUp(email: String, password: String) =
+    suspendCoroutine<String> { cont ->
+        val task = createUserWithEmailAndPassword(email, password)
+        task.addOnSuccessListener {
+            cont.resumeWith(
+                Result.success(
+                    it.user?.uid ?: error("User is not registered")
+                )
+            )
+        }
+        task.addOnFailureListener { ex -> cont.resumeWithException(ex) }
+    }
 
-suspend fun FirebaseAuth.signIn(email: String, password: String) = suspendCoroutine<String> { cont ->
-    val task = signInWithEmailAndPassword(email, password)
-    task.addOnSuccessListener { cont.resumeWith(Result.success(it.user?.uid ?: error("User is not logged in"))) }
-    task.addOnFailureListener { ex -> cont.resumeWithException(ex) }
-}
+suspend fun FirebaseAuth.signIn(email: String, password: String) =
+    suspendCoroutine<Unit> { cont ->
+        val task = signInWithEmailAndPassword(email, password)
+        task.addOnSuccessListener {
+            cont.resumeWith(
+                Result.success(Unit)
+            )
+        }
+        task.addOnFailureListener { ex -> cont.resumeWithException(ex) }
+    }
