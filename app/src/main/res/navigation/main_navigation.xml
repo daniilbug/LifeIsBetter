@@ -36,16 +36,9 @@
         android:label="Profile"
         tools:layout="@layout/fragment_profile">
 
-        <action
-            android:id="@+id/openEditing"
-            app:destination="@id/editProfileFragment" />
         <action android:id="@+id/logOut"
             app:destination="@id/auth_navigation"
             app:popUpTo="@id/main_navigation.xml"
             app:popUpToInclusive="true"/>
     </fragment>
-    <fragment
-        android:id="@+id/editProfileFragment"
-        android:name="com.github.daniilbug.lifeisbetter.ui.EditProfileFragment"
-        android:label="EditProfileFragment" />
 </navigation>

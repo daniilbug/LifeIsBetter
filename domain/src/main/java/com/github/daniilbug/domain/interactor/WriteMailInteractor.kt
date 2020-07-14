@@ -17,10 +17,9 @@ class WriteMailInteractor(
 
     suspend fun sendMail(text: String) {
         val session = userSessionProvider.getUserSession() ?: throw UserIsNotAuthorizedException()
-        val randomUser = userRepository.getRandomUser("")
+        val randomUser = userRepository.getRandomUser(exceptUserId = session.userId)
         val mail = Mail(UUID.randomUUID().toString(), randomUser.id, session.userId, text, -1, System.currentTimeMillis())
         mailsRepository.sendMail(mail)
         notificationSender.sendNotification(randomUser.id, mail.content)
-        notificationSender.sendNotification(session.userId, mail.content)
     }
 }

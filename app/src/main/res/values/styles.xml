@@ -10,4 +10,8 @@
         <item name="android:colorBackground">@color/colorGrey</item>
     </style>
 
+    <style name="StartTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="android:windowBackground">@drawable/splash_screen</item>
+        <item name="colorPrimaryDark">@color/ic_launcher_background</item>
+    </style>
 </resources>
