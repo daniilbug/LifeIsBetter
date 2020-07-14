@@ -1,3 +1,3 @@
 package com.github.daniilbug.notifications
 
-const val SERVER_KEY = "AIzaSyDhD4Y6qsosb0jRSlgnV-laURdvmDqEUVY "
+const val SERVER_KEY = "AAAAXTUUIn8:APA91bGi5xienSX-TMGOphA4hL_uiUVDUcTEcQQxv000JK8w-PmFHNmin5fE8ftDvi0ibo2y_AI75-PLwx5KIvsdg6n_afxNd4Lw2RDf7fU69uq5tTvyFhL0Gh4zy7IiqDr3Ctwwoc9H"

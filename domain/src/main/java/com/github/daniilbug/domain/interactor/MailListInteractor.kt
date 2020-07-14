@@ -5,10 +5,10 @@ import com.github.daniilbug.auth.exceptions.UserIsNotAuthorizedException
 import com.github.daniilbug.data.MailsRepository
 import com.github.daniilbug.data.MailsResult
 
-class MailListInteractor(private val mailListRepository: MailsRepository, sessionProvider: UserSessionProvider) {
-    private val session = sessionProvider.getUserSession() ?: throw UserIsNotAuthorizedException()
+class MailListInteractor(private val mailListRepository: MailsRepository, private val sessionProvider: UserSessionProvider) {
 
     suspend fun getMailsByPage(page: Any?, pageSize: Int): MailsResult {
+        val session = sessionProvider.getUserSession() ?: throw UserIsNotAuthorizedException()
         return mailListRepository.getMyMails(session.userId, page, pageSize)
     }
 }

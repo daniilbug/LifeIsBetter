@@ -6,18 +6,17 @@ import com.github.daniilbug.data.Mail
 import com.github.daniilbug.data.MailsRepository
 import com.github.daniilbug.data.UserRepository
 import com.github.daniilbug.notifications.NotificationSender
-import com.github.daniilbug.notifications.NotificationSubscriptionManager
 import java.util.*
 
 class WriteMailInteractor(
     private val mailsRepository: MailsRepository,
     private val userRepository: UserRepository,
     private val notificationSender: NotificationSender,
-    userSessionProvider: UserSessionProvider
+    private val userSessionProvider: UserSessionProvider
 ) {
-    private val session = userSessionProvider.getUserSession() ?: throw UserIsNotAuthorizedException()
 
     suspend fun sendMail(text: String) {
+        val session = userSessionProvider.getUserSession() ?: throw UserIsNotAuthorizedException()
         val randomUser = userRepository.getRandomUser("")
         val mail = Mail(UUID.randomUUID().toString(), randomUser.id, session.userId, text, -1, System.currentTimeMillis())
         mailsRepository.sendMail(mail)

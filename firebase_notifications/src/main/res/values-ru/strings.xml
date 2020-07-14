@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="new_message">Новое сообщение!</string>
+    <string name="notification_channel_title">Сообщения</string>
+    <string name="notification_channel_description">Канал для получения уведомлений с каждым новым сообщением</string>
+</resources>

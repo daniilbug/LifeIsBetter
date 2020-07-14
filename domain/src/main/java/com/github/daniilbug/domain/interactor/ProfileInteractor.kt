@@ -9,9 +9,10 @@ import com.github.daniilbug.notifications.NotificationSubscriptionManager
 class ProfileInteractor(
     private val mailsRepository: MailsRepository,
     private val notificationSubscriptionManager: NotificationSubscriptionManager,
-    userSessionProvider: UserSessionProvider
+    private val userSessionProvider: UserSessionProvider
 ) {
-    private val session = userSessionProvider.getUserSession() ?: throw UserIsNotAuthorizedException()
+
+    private val session get() = userSessionProvider.getUserSession() ?: throw UserIsNotAuthorizedException()
 
     suspend fun logOut() {
         session.logOut()
