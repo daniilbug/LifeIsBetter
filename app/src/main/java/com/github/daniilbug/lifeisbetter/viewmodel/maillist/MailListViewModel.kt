@@ -37,19 +37,23 @@ class MailListViewModel(
             val page = params.key
             val pageSize = params.loadSize
             return try {
-                val loadedData = mailListInteractor.getMailsByPage(page, pageSize)
-                if (loadedData.mails.isEmpty() && page == null) {
-                    LoadResult.Error(EmptyListException)
-                } else {
-                    LoadResult.Page(
-                        data = loadedData.mails,
-                        nextKey = loadedData.nextPage,
-                        prevKey = null
-                    )
-                }
+                loadDate(page, pageSize)
             } catch (ex: Exception) {
-                return LoadResult.Error(ex)
+                LoadResult.Error(ex)
             }
+        }
+    }
+
+    private suspend fun loadDate(page: Any?, pageSize: Int): PagingSource.LoadResult<Any, Mail> {
+        val loadedData = mailListInteractor.getMailsByPage(page, pageSize)
+        return if (loadedData.mails.isEmpty() && page == null) {
+            PagingSource.LoadResult.Error(EmptyListException)
+        } else {
+            PagingSource.LoadResult.Page(
+                data = loadedData.mails,
+                nextKey = loadedData.nextPage,
+                prevKey = null
+            )
         }
     }
 }

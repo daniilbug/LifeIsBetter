@@ -6,6 +6,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.github.daniilbug.lifeisbetter.R
 import com.github.daniilbug.lifeisbetter.utils.BaseFragment
+import com.github.daniilbug.lifeisbetter.utils.animateFadeIn
 import com.github.daniilbug.lifeisbetter.viewmodel.profile.ProfileEvent
 import com.github.daniilbug.lifeisbetter.viewmodel.profile.ProfileState
 import com.github.daniilbug.lifeisbetter.viewmodel.profile.ProfileViewModel
@@ -42,10 +43,8 @@ class ProfileFragment: BaseFragment(R.layout.fragment_profile, needBottomNavigat
     private fun showStatistic(mailsAmount: Int, goodMailsAmount: Int) = view?.run {
         profileGoodMessagesCount.text = goodMailsAmount.toString()
         profileAllMessagesCount.text = mailsAmount.toString()
-        profileGoodMessagesCount.alpha = 0f
-        profileAllMessagesCount.alpha = 0f
-        profileGoodMessagesCount.animate().alpha(1f).setDuration(300L).start()
-        profileAllMessagesCount.animate().alpha(1f).setDuration(300L).start()
+        profileGoodMessagesCount.animateFadeIn()
+        profileAllMessagesCount.animateFadeIn()
         profileSwipeRefresh.isRefreshing = false
     }
 

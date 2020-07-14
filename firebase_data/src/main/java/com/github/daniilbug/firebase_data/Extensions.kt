@@ -39,12 +39,12 @@ suspend fun DocumentReference.updateValue(fieldName: String, any: Any) = suspend
 
 @ExperimentalCoroutinesApi
 inline fun <reified T: Any> DocumentReference.flow(): Flow<T> = callbackFlow<T> {
-    val toDelete: ListenerRegistration = addSnapshotListener { value, error ->
+    val disposable: ListenerRegistration = addSnapshotListener { value, error ->
         if (error != null)
             close(error)
         val data = value?.toObject(T::class.java) ?: error("Error in parsing ${T::class.simpleName} from firebase cloud storage")
         sendBlocking(data)
     }
 
-    awaitClose { toDelete.remove() }
+    awaitClose { disposable.remove() }
 }

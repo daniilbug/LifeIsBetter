@@ -13,6 +13,7 @@ import com.github.daniilbug.lifeisbetter.R
 import com.github.daniilbug.lifeisbetter.adapter.MailListAdapter
 import com.github.daniilbug.lifeisbetter.adapter.MailListLoadingAdapter
 import com.github.daniilbug.lifeisbetter.utils.BaseFragment
+import com.github.daniilbug.lifeisbetter.utils.animateFadeIn
 import com.github.daniilbug.lifeisbetter.viewmodel.MailView
 import com.github.daniilbug.lifeisbetter.viewmodel.maillist.MailListViewModel
 import com.google.android.material.textview.MaterialTextView
@@ -66,36 +67,39 @@ class MailListFragment :
         lifecycleScope.launch {
             mailAdapter.loadStateFlow.collectLatest { state ->
                 val refreshState = state.refresh
-                if (refreshState is LoadState.Error) {
-                    processError(refreshState.error)
-                }
-                if (refreshState !is LoadState.Loading) {
-                    hideLoading()
-                    view?.messagesListSwipeRefresh?.isRefreshing = false
-                }
+                setLoadState(refreshState)
             }
         }
     }
 
-    private fun processError(error: Throwable) {
+    private fun setLoadState(refreshState: LoadState) {
+        if (refreshState is LoadState.Error) {
+            showError(refreshState.error)
+        }
+
+        if (refreshState !is LoadState.Loading) {
+            hideLoading()
+            view?.messagesListSwipeRefresh?.isRefreshing = false
+        }
+    }
+
+    private fun showError(error: Throwable) {
         when (error) {
             is MailListViewModel.EmptyListException -> showEmptyList()
         }
     }
 
     private fun showEmptyList() = view?.run {
-        val errorView = errorView ?: messagesListViewStub.inflate()
-        this@MailListFragment.errorView = errorView
-        errorView.apply {
+        val curErrorView = errorView ?: messagesListViewStub.inflate()
+        errorView = curErrorView
+        curErrorView.apply {
             findViewById<AppCompatImageView>(R.id.emptyListImage).apply {
                 setImageResource(R.drawable.ic_mailbox_one_color)
-                alpha = 0f
-                animate().alpha(1f).setDuration(300L).start()
+                animateFadeIn()
             }
             findViewById<MaterialTextView>(R.id.emptyListText).apply {
                 setText(R.string.empty_mailbox)
-                alpha = 0f
-                animate().alpha(1f).setDuration(300L).start()
+                animateFadeIn()
             }
         }
     }
@@ -111,7 +115,6 @@ class MailListFragment :
     private fun showDetails(card: View, mail: MailView) {
         val extras = FragmentNavigatorExtras(card to mail.id)
         val args = bundleOf("mail" to mail)
-        NavHostFragment.findNavController(this)
-            .navigate(R.id.showMessageDetails, args, null, extras)
+        NavHostFragment.findNavController(this).navigate(R.id.showMessageDetails, args, null, extras)
     }
 }

@@ -28,17 +28,12 @@ class SignUpFragment: BaseFragment(R.layout.fragment_sign_up, needBottomNavigati
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         with(view) {
-            sharedElementEnterTransition = MaterialContainerTransform().apply {
-                duration = 300
-                setPathMotion(MaterialArcMotion())
-                scrimColor = Color.TRANSPARENT
-            }
-            exitTransition = Hold()
+            setupEnterTransition()
             signUpBackButton.setOnClickListener {
                 onBack()
             }
             signUpButton.setOnClickListener {
-                tryToSignUp()
+                signUp()
             }
         }
     }
@@ -49,7 +44,16 @@ class SignUpFragment: BaseFragment(R.layout.fragment_sign_up, needBottomNavigati
         viewModel.status.observe(viewLifecycleOwner, Observer { status -> processStatus(status) })
     }
 
-    private fun View.tryToSignUp() {
+    private fun View.setupEnterTransition() {
+        sharedElementEnterTransition = MaterialContainerTransform().apply {
+            duration = 300
+            setPathMotion(MaterialArcMotion())
+            scrimColor = Color.TRANSPARENT
+        }
+        exitTransition = Hold()
+    }
+
+    private fun View.signUp() {
         val email = signUpEmailEditText.text.toString()
         val password = signUpPasswordEditText.text.toString()
         val confirmPassword = signUpConfirmPasswordEditText.text.toString()

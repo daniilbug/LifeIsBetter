@@ -14,7 +14,6 @@ class PushNotificationService : FirebaseMessagingService() {
         getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
     }
 
-    private lateinit var notificationChannel: NotificationChannel
 
     companion object {
         const val CHANNEL_ID = "com.github.daniilbug.lifeisbetter.mails"
@@ -23,7 +22,7 @@ class PushNotificationService : FirebaseMessagingService() {
     override fun onCreate() {
         super.onCreate()
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            notificationChannel = createNotificationChannel(
+            createNotificationChannel(
                 CHANNEL_ID,
                 getString(R.string.notification_channel_title),
                 getString(R.string.notification_channel_description)

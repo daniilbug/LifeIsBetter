@@ -17,3 +17,8 @@ fun View.hideWithScale(duration: Long = 300L) {
         visibility = View.INVISIBLE
     }.start()
 }
+
+fun View.animateFadeIn(duration: Long = 300L) {
+    alpha = 0f
+    animate().alpha(1f).setDuration(duration).start()
+}

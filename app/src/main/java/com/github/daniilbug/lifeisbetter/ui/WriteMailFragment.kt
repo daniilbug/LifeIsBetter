@@ -26,10 +26,7 @@ class WriteMailFragment : BaseFragment(R.layout.fragment_write_mail, needBottomN
         with(view) {
             writeMailMotionLayout.setTransitionListener(object : EmptyTransitionListener() {
                 override fun onTransitionCompleted(layour: MotionLayout?, state: Int) {
-                    when (state) {
-                        R.id.sentState -> onSentState(view)
-                        R.id.defaultState -> onDefaultState(view)
-                    }
+                    setTransitionState(view, state)
                 }
             })
         }
@@ -38,6 +35,13 @@ class WriteMailFragment : BaseFragment(R.layout.fragment_write_mail, needBottomN
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel.status.observe(viewLifecycleOwner, Observer { status -> processStatus(status) })
+    }
+
+    private fun setTransitionState(view: View, state: Int) = view.run {
+        when (state) {
+            R.id.sentState -> onSentState(view)
+            R.id.defaultState -> onDefaultState(view)
+        }
     }
 
     private fun processStatus(status: WriteMailStatus) {

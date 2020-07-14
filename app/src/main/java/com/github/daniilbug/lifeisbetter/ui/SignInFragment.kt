@@ -74,7 +74,7 @@ class SignInFragment: BaseFragment(R.layout.fragment_sign_in, needBottomNavigati
     }
 
     private fun showMailListScreen() {
-        NavHostFragment.findNavController(this).navigate(R.id.signIn)
+        findNavController().navigate(R.id.signIn)
     }
 
     private fun signIn(email: String, password: String) {

@@ -40,16 +40,11 @@ class MailDetailsFragment : BaseFragment(R.layout.fragment_message_details, need
         val mailView = arguments?.getParcelable<MailView>("mail")
         checkNotNull(mailView) { MAIL_ARG_ERROR }
         with(view) {
-            transitionName = mailView.id
-            sharedElementEnterTransition = MaterialContainerTransform().apply {
-                endView = messageDetailsLayout
-                duration = 300
-            }
-            exitTransition = Hold()
+            setupEnterTransition(mailView)
             messageDetailsText.text = mailView.text
             messageDetailsDate.text = DateFormat.getDateFormat(context).format(mailView.date)
             messageDetailsBackButton.setOnClickListener {
-                findNavController().popBackStack()
+                backNavigation()
             }
             showResultButtonsWithAnimations(this)
             setRadioButtonListeners()
@@ -66,6 +61,19 @@ class MailDetailsFragment : BaseFragment(R.layout.fragment_message_details, need
             is MailDetailsState.Loading -> {}
             is MailDetailsState.FeedBack -> view?.setCheckedByFeedback(state.feedBack)
         }
+    }
+
+    private fun View.setupEnterTransition(mailView: MailView) {
+        transitionName = mailView.id
+        sharedElementEnterTransition = MaterialContainerTransform().apply {
+            endView = messageDetailsLayout
+            duration = 300
+        }
+        exitTransition = Hold()
+    }
+
+    private fun backNavigation() {
+        findNavController().popBackStack()
     }
 
     private fun View.setRadioButtonListeners() {
@@ -95,9 +103,5 @@ class MailDetailsFragment : BaseFragment(R.layout.fragment_message_details, need
             messageDetailsNeutralButton.show()
             messageDetailsGoodButton.show()
         }
-    }
-
-    private fun showError(message: String) {
-        Toast.makeText(context, message, Toast.LENGTH_LONG).show()
     }
 }
