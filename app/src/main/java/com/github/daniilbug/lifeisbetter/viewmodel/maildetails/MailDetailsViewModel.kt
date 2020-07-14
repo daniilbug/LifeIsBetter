@@ -26,11 +26,11 @@ class MailDetailsViewModel(
         .flowOn(Dispatchers.IO)
         .asLiveData(viewModelScope.coroutineContext)
 
-    private val feedbackChanges = BroadcastChannel<MailFeedBack>(128)
+    private val feedbackChanges = MutableStateFlow(mail.feedBack)
 
     init {
         viewModelScope.launch {
-            feedbackChanges.asFlow().collectLatest { feedBack ->
+            feedbackChanges.collectLatest { feedBack ->
                 changeFeedback(feedBack)
             }
         }
@@ -38,7 +38,7 @@ class MailDetailsViewModel(
 
     fun sendEvent(event: MailDetailsEvent) {
         when (event) {
-            is MailDetailsEvent.ChangeFeedback -> viewModelScope.launch { feedbackChanges.send(event.feedBack) }
+            is MailDetailsEvent.ChangeFeedback -> feedbackChanges.value = event.feedBack
         }
     }
 
