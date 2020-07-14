@@ -41,7 +41,7 @@
             app:destination="@id/editProfileFragment" />
         <action android:id="@+id/logOut"
             app:destination="@id/auth_navigation"
-            app:popUpTo="@id/messagesListFragment"
+            app:popUpTo="@id/main_navigation.xml"
             app:popUpToInclusive="true"/>
     </fragment>
     <fragment

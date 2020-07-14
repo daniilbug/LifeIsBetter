@@ -63,7 +63,7 @@ class App : Application() {
             viewModel { SignInViewModel(get(), get()) }
             viewModel { SignUpViewModel(get(), get()) }
             viewModel { MailListViewModel(get()) }
-            viewModel { WriteMailViewModel(get()) }
+            viewModel { WriteMailViewModel(get(), get()) }
             viewModel { (mailView: MailView) -> MailDetailsViewModel(mailView, get()) }
             viewModel { ProfileViewModel(get()) }
         }

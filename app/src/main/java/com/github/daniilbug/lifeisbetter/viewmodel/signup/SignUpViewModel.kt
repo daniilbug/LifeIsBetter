@@ -4,14 +4,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.github.daniilbug.auth.exceptions.ConfirmPasswordIsWrongException
-import com.github.daniilbug.auth.exceptions.UserAlreadyExistsException
-import com.github.daniilbug.auth.exceptions.WeakPasswordException
-import com.github.daniilbug.auth.exceptions.WrongEmailFormatException
+import com.github.daniilbug.auth.exceptions.*
 import com.github.daniilbug.lifeisbetter.StringResolver
 import com.github.daniilbug.domain.interactor.SignUpInteractor
 import com.github.daniilbug.lifeisbetter.R
 import com.github.daniilbug.lifeisbetter.utils.StatusLiveData
+import com.github.daniilbug.lifeisbetter.viewmodel.signin.SignInState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -44,6 +42,8 @@ class SignUpViewModel(
                 sendError(R.string.weak_password_error)
             } catch (e: ConfirmPasswordIsWrongException) {
                 sendError(R.string.confirm_password_error)
+            } catch (e: NetworkException) {
+                sendError(R.string.network_connection_problem)
             } catch (e: Exception) {
                 e.printStackTrace()
                 mutableState.postValue(SignUpState.Default)

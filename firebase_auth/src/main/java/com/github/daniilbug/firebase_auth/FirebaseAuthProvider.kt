@@ -1,11 +1,10 @@
 package com.github.daniilbug.firebase_auth
 
+import android.net.Network
 import com.github.daniilbug.auth.AuthProvider
 import com.github.daniilbug.auth.AuthUser
-import com.github.daniilbug.auth.exceptions.InvalidLoginOrPasswordException
-import com.github.daniilbug.auth.exceptions.UserAlreadyExistsException
-import com.github.daniilbug.auth.exceptions.WeakPasswordException
-import com.github.daniilbug.auth.exceptions.WrongEmailFormatException
+import com.github.daniilbug.auth.exceptions.*
+import com.google.firebase.FirebaseNetworkException
 import com.google.firebase.auth.*
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -21,6 +20,8 @@ class FirebaseAuthProvider : AuthProvider {
             throw InvalidLoginOrPasswordException()
         } catch (e: FirebaseAuthInvalidUserException) {
             throw InvalidLoginOrPasswordException()
+        } catch (e: FirebaseNetworkException) {
+            throw NetworkException()
         }
     }
 
@@ -36,6 +37,8 @@ class FirebaseAuthProvider : AuthProvider {
             throw WrongEmailFormatException()
         } catch (e: FirebaseAuthInvalidCredentialsException) {
             throw WrongEmailFormatException()
+        } catch (e: FirebaseNetworkException) {
+            throw NetworkException()
         }
     }
 }

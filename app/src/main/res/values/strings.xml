@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">LifeIsBetter</string>
+    <string name="app_name" translatable="false">LifeIsBetter</string>
     <string name="mailbox">Mailbox</string>
     <string name="write_mail">Write mail</string>
     <string name="profile">Profile</string>
@@ -17,4 +17,5 @@
     <string name="success">Success!</string>
     <string name="blank_message">Your message must not be blank</string>
     <string name="empty_mailbox">Your mailbox is empty now..</string>
+    <string name="network_connection_problem">Network connection problem</string>
 </resources>

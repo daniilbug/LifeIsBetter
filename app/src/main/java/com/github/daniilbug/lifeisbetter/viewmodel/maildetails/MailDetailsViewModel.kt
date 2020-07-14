@@ -26,8 +26,6 @@ class MailDetailsViewModel(
         .flowOn(Dispatchers.IO)
         .asLiveData(viewModelScope.coroutineContext)
 
-    private val mutableStatus = StatusLiveData<MailDetailsStatus>()
-    val status: LiveData<MailDetailsStatus> get() = mutableStatus
     private val feedbackChanges = BroadcastChannel<MailFeedBack>(128)
 
     init {
@@ -45,12 +43,8 @@ class MailDetailsViewModel(
     }
 
     private fun changeFeedback(feedBack: MailFeedBack) = viewModelScope.launch(Dispatchers.IO) {
-        try {
-            val feedbackNumber = feedBack.toNumber()
-            mailDetailsInteractor.setFeedBack(mail.id, feedbackNumber)
-        } catch (e: Exception) {
-            mutableStatus.postValue(MailDetailsStatus.Error(e.localizedMessage ?: ""))
-        }
+        val feedbackNumber = feedBack.toNumber()
+        mailDetailsInteractor.setFeedBack(mail.id, feedbackNumber)
     }
 
     private fun feedBackToState(feedbackNumber: Int): MailDetailsState {

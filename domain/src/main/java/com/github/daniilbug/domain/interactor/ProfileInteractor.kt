@@ -15,8 +15,8 @@ class ProfileInteractor(
     private val session get() = userSessionProvider.getUserSession() ?: throw UserIsNotAuthorizedException()
 
     suspend fun logOut() {
-        session.logOut()
         notificationSubscriptionManager.unsubscribe(session.userId)
+        session.logOut()
     }
 
     suspend fun getStatistic(): MailsStatistic {

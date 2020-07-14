@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="mailbox">Почтовый ящик</string>
+    <string name="write_mail">Написать письмо</string>
+    <string name="profile">Профиль</string>
+    <string name="email">Электронная почта</string>
+    <string name="password">Пароль</string>
+    <string name="dont_have_account">Нет аккаунта?</string>
+    <string name="sign_up">Регистрация</string>
+    <string name="sign_in">Вход</string>
+    <string name="confirm_password">Подтверждение пароля</string>
+    <string name="confirm_password_error">Пароли не совпадают</string>
+    <string name="user_exists_error">Пользователь с такой почтой уже существует</string>
+    <string name="invalid_login_or_password_error">Неверный логин или пароль</string>
+    <string name="weak_password_error">Слишком слабый пароль</string>
+    <string name="wrong_email_format_error">Неверный формат электронной почты </string>
+    <string name="success">Успешно!</string>
+    <string name="blank_message">Письмо не должно быть пустым</string>
+    <string name="empty_mailbox">Ваш почтовый ящик пуст..</string>
+    <string name="network_connection_problem">Проблема с сетевым соединением</string>
+</resources>

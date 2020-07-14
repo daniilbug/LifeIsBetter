@@ -12,7 +12,6 @@ import com.github.daniilbug.lifeisbetter.viewmodel.MailFeedBack
 import com.github.daniilbug.lifeisbetter.viewmodel.MailView
 import com.github.daniilbug.lifeisbetter.viewmodel.maildetails.MailDetailsEvent
 import com.github.daniilbug.lifeisbetter.viewmodel.maildetails.MailDetailsState
-import com.github.daniilbug.lifeisbetter.viewmodel.maildetails.MailDetailsStatus
 import com.github.daniilbug.lifeisbetter.viewmodel.maildetails.MailDetailsViewModel
 import com.google.android.material.transition.Hold
 import com.google.android.material.transition.MaterialContainerTransform
@@ -60,7 +59,6 @@ class MailDetailsFragment : BaseFragment(R.layout.fragment_message_details, need
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel.state.observe(viewLifecycleOwner, Observer { state -> setState(state) })
-        viewModel.status.observe(viewLifecycleOwner, Observer { status -> processStatus(status) })
     }
 
     private fun setState(state: MailDetailsState) {
@@ -96,12 +94,6 @@ class MailDetailsFragment : BaseFragment(R.layout.fragment_message_details, need
             messageDetailsBadButton.show()
             messageDetailsNeutralButton.show()
             messageDetailsGoodButton.show()
-        }
-    }
-
-    private fun processStatus(status: MailDetailsStatus) {
-        when (status) {
-            is MailDetailsStatus.Error -> showError(status.message)
         }
     }
 

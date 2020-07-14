@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.github.daniilbug.auth.exceptions.InvalidLoginOrPasswordException
+import com.github.daniilbug.auth.exceptions.NetworkException
 import com.github.daniilbug.auth.exceptions.WrongEmailFormatException
 import com.github.daniilbug.lifeisbetter.StringResolver
 import com.github.daniilbug.domain.interactor.SignInInteractor
@@ -45,6 +46,8 @@ class SignInViewModel(
             sendError(R.string.invalid_login_or_password_error)
         } catch (e: WrongEmailFormatException) {
             sendError(R.string.wrong_email_format_error)
+        } catch (e: NetworkException) {
+            sendError(R.string.network_connection_problem)
         } catch (e: Exception) {
             e.printStackTrace()
             mutableState.postValue(SignInState.Default)
