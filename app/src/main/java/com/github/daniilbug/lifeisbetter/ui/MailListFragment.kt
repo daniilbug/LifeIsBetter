@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.os.bundleOf
+import androidx.core.view.doOnPreDraw
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.FragmentNavigatorExtras
@@ -35,6 +36,22 @@ class MailListFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initRecycler(view)
+        initSwipeRefresh(view)
+    }
+
+    private fun initSwipeRefresh(view: View) {
+        with(view.messagesListSwipeRefresh) {
+            setColorSchemeResources(
+                R.color.colorOrangeDark,
+                R.color.colorOrangeDark,
+                R.color.colorOrangeDark
+            )
+            setOnRefreshListener { mailAdapter.refresh() }
+        }
+    }
+
+    private fun initRecycler(view: View) {
         mailAdapter =
             MailListAdapter(onClick = { card, mail ->
                 showDetails(
@@ -46,14 +63,6 @@ class MailListFragment :
             MailListLoadingAdapter(),
             MailListLoadingAdapter()
         )
-        with(view.messagesListSwipeRefresh) {
-            setColorSchemeResources(
-                R.color.colorOrangeDark,
-                R.color.colorOrangeDark,
-                R.color.colorOrangeDark
-            )
-            setOnRefreshListener { mailAdapter.refresh() }
-        }
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
