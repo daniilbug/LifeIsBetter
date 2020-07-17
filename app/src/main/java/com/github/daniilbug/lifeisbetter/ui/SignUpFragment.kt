@@ -19,7 +19,6 @@ import com.google.android.material.transition.MaterialArcMotion
 import com.google.android.material.transition.MaterialContainerTransform
 import kotlinx.android.synthetic.main.fragment_sign_up.*
 import kotlinx.android.synthetic.main.fragment_sign_up.view.*
-import kotlinx.android.synthetic.main.fragment_sign_up.view.signUpButton
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SignUpFragment: BaseFragment(R.layout.fragment_sign_up, needBottomNavigation = false) {

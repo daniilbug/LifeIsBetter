@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.github.daniilbug.lifeisbetter.R
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.progressindicator.ProgressIndicator
-import java.lang.Exception
 
 class MailListLoadingAdapter: LoadStateAdapter<MailListLoadingAdapter.ViewHolder>() {
 

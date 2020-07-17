@@ -9,10 +9,10 @@ import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.channels.sendBlocking
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
+import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlin.coroutines.resumeWithException
-import kotlin.coroutines.suspendCoroutine
 
-suspend inline fun<reified T: Any> Query.loadList() = suspendCoroutine<List<T>> { cont ->
+suspend inline fun<reified T: Any> Query.loadList() = suspendCancellableCoroutine<List<T>> { cont ->
     get().addOnSuccessListener { snapshot ->
         val objects = snapshot.toObjects<T>()
         cont.resumeWith(Result.success(objects))
@@ -21,7 +21,7 @@ suspend inline fun<reified T: Any> Query.loadList() = suspendCoroutine<List<T>> 
     }
 }
 
-suspend fun DocumentReference.setValue(any: Any) = suspendCoroutine<Unit> { cont ->
+suspend fun DocumentReference.setValue(any: Any) = suspendCancellableCoroutine<Unit> { cont ->
     set(any).addOnSuccessListener {
         cont.resumeWith(Result.success(Unit))
     }.addOnFailureListener { ex ->
@@ -29,7 +29,7 @@ suspend fun DocumentReference.setValue(any: Any) = suspendCoroutine<Unit> { cont
     }
 }
 
-suspend fun DocumentReference.updateValue(fieldName: String, any: Any) = suspendCoroutine<Unit> { cont ->
+suspend fun DocumentReference.updateValue(fieldName: String, any: Any) = suspendCancellableCoroutine<Unit> { cont ->
     update(fieldName, any).addOnSuccessListener {
         cont.resumeWith(Result.success(Unit))
     }.addOnFailureListener { ex ->
@@ -38,7 +38,7 @@ suspend fun DocumentReference.updateValue(fieldName: String, any: Any) = suspend
 }
 
 @ExperimentalCoroutinesApi
-inline fun <reified T: Any> DocumentReference.flow(): Flow<T> = callbackFlow<T> {
+inline fun <reified T: Any> DocumentReference.flow(): Flow<T> = callbackFlow {
     val disposable: ListenerRegistration = addSnapshotListener { value, error ->
         if (error != null)
             close(error)

@@ -1,15 +1,16 @@
 package com.github.daniilbug.lifeisbetter.viewmodel.maildetails
 
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
+import androidx.lifecycle.viewModelScope
 import com.github.daniilbug.domain.interactor.MailDetailsInteractor
-import com.github.daniilbug.lifeisbetter.utils.StatusLiveData
 import com.github.daniilbug.lifeisbetter.viewmodel.MailFeedBack
 import com.github.daniilbug.lifeisbetter.viewmodel.MailView
 import com.github.daniilbug.lifeisbetter.viewmodel.toNumber
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
-import kotlinx.coroutines.channels.BroadcastChannel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 

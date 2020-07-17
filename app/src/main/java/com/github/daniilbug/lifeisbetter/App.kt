@@ -23,7 +23,6 @@ import com.github.daniilbug.notifications.NotificationSender
 import com.github.daniilbug.notifications.NotificationSubscriptionManager
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
-import org.koin.android.ext.android.get
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.context.startKoin

@@ -1,10 +1,10 @@
 package com.github.daniilbug.notifications
 
 import com.google.firebase.messaging.FirebaseMessaging
+import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlin.coroutines.resumeWithException
-import kotlin.coroutines.suspendCoroutine
 
-suspend fun FirebaseMessaging.subscribe(topic: String) = suspendCoroutine<Unit> { cont ->
+suspend fun FirebaseMessaging.subscribe(topic: String) = suspendCancellableCoroutine<Unit> { cont ->
     subscribeToTopic(topic).addOnSuccessListener {
         cont.resumeWith(Result.success(Unit))
     }.addOnFailureListener { ex ->
@@ -12,7 +12,7 @@ suspend fun FirebaseMessaging.subscribe(topic: String) = suspendCoroutine<Unit> 
     }
 }
 
-suspend fun FirebaseMessaging.unsubscribe(topic: String) = suspendCoroutine<Unit> { cont ->
+suspend fun FirebaseMessaging.unsubscribe(topic: String) = suspendCancellableCoroutine<Unit> { cont ->
     unsubscribeFromTopic(topic).addOnSuccessListener {
         cont.resumeWith(Result.success(Unit))
     }.addOnFailureListener { ex ->

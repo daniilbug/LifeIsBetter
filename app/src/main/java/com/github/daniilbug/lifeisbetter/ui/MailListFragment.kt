@@ -18,7 +18,6 @@ import com.github.daniilbug.lifeisbetter.viewmodel.MailView
 import com.github.daniilbug.lifeisbetter.viewmodel.maillist.MailListViewModel
 import com.google.android.material.textview.MaterialTextView
 import kotlinx.android.synthetic.main.fragment_messages_list.view.*
-import kotlinx.android.synthetic.main.fragment_messages_list.view.messagesListProgressBar
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.flow.collectLatest

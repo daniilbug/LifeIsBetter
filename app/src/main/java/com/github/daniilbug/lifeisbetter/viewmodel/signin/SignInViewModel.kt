@@ -7,11 +7,14 @@ import androidx.lifecycle.viewModelScope
 import com.github.daniilbug.auth.exceptions.InvalidLoginOrPasswordException
 import com.github.daniilbug.auth.exceptions.NetworkException
 import com.github.daniilbug.auth.exceptions.WrongEmailFormatException
-import com.github.daniilbug.lifeisbetter.StringResolver
 import com.github.daniilbug.domain.interactor.SignInInteractor
 import com.github.daniilbug.lifeisbetter.R
+import com.github.daniilbug.lifeisbetter.StringResolver
 import com.github.daniilbug.lifeisbetter.utils.StatusLiveData
-import kotlinx.coroutines.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 @ExperimentalCoroutinesApi
 class SignInViewModel(

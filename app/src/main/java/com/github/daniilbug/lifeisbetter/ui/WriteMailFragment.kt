@@ -4,14 +4,10 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.constraintlayout.motion.widget.MotionLayout
-import androidx.core.view.isVisible
-import androidx.core.widget.doAfterTextChanged
 import androidx.lifecycle.Observer
 import com.github.daniilbug.lifeisbetter.R
 import com.github.daniilbug.lifeisbetter.utils.BaseFragment
 import com.github.daniilbug.lifeisbetter.utils.EmptyTransitionListener
-import com.github.daniilbug.lifeisbetter.utils.hideWithScale
-import com.github.daniilbug.lifeisbetter.utils.showWithScale
 import com.github.daniilbug.lifeisbetter.viewmodel.writemail.WriteMailEvent
 import com.github.daniilbug.lifeisbetter.viewmodel.writemail.WriteMailStatus
 import com.github.daniilbug.lifeisbetter.viewmodel.writemail.WriteMailViewModel

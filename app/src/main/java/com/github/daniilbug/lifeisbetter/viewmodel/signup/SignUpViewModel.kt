@@ -5,11 +5,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.github.daniilbug.auth.exceptions.*
-import com.github.daniilbug.lifeisbetter.StringResolver
 import com.github.daniilbug.domain.interactor.SignUpInteractor
 import com.github.daniilbug.lifeisbetter.R
+import com.github.daniilbug.lifeisbetter.StringResolver
 import com.github.daniilbug.lifeisbetter.utils.StatusLiveData
-import com.github.daniilbug.lifeisbetter.viewmodel.signin.SignInState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 

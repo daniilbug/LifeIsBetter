@@ -8,12 +8,10 @@ import androidx.paging.PagingSource
 import androidx.paging.cachedIn
 import com.github.daniilbug.data.Mail
 import com.github.daniilbug.domain.interactor.MailListInteractor
-import com.github.daniilbug.lifeisbetter.StringResolver
 import com.github.daniilbug.lifeisbetter.viewmodel.MailFeedBack
 import com.github.daniilbug.lifeisbetter.viewmodel.MailView
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.map
-import java.lang.IllegalStateException
 import java.util.*
 
 @ExperimentalCoroutinesApi

@@ -1,6 +1,5 @@
 package com.github.daniilbug.firebase_auth
 
-import android.net.Network
 import com.github.daniilbug.auth.AuthProvider
 import com.github.daniilbug.auth.AuthUser
 import com.github.daniilbug.auth.exceptions.*
